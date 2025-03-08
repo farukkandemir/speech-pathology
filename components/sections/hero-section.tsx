@@ -2,153 +2,23 @@
 
 import { useLanguage } from "@/lib/i18n/language-context";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
   MessageCircle,
   Calendar,
-  CheckCircle2,
-  Sparkles,
   Brain,
   HeartHandshake,
-  ArrowUpRight,
   Star,
   Zap,
   Lightbulb,
-  Users,
-  Award,
   Languages,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
 
-// Predefined particle positions to avoid hydration errors
-const particlePositions = [
-  {
-    top: "10%",
-    left: "20%",
-    width: "4px",
-    height: "4px",
-    delay: "0s",
-    duration: "15s",
-  },
-  {
-    top: "25%",
-    left: "85%",
-    width: "6px",
-    height: "6px",
-    delay: "1s",
-    duration: "18s",
-  },
-  {
-    top: "60%",
-    left: "10%",
-    width: "5px",
-    height: "5px",
-    delay: "2s",
-    duration: "12s",
-  },
-  {
-    top: "35%",
-    left: "50%",
-    width: "3px",
-    height: "3px",
-    delay: "0.5s",
-    duration: "20s",
-  },
-  {
-    top: "85%",
-    left: "70%",
-    width: "4px",
-    height: "4px",
-    delay: "1.5s",
-    duration: "16s",
-  },
-  {
-    top: "20%",
-    left: "30%",
-    width: "5px",
-    height: "5px",
-    delay: "2.5s",
-    duration: "14s",
-  },
-  {
-    top: "70%",
-    left: "40%",
-    width: "3px",
-    height: "3px",
-    delay: "3s",
-    duration: "17s",
-  },
-  {
-    top: "45%",
-    left: "90%",
-    width: "6px",
-    height: "6px",
-    delay: "1s",
-    duration: "13s",
-  },
-  {
-    top: "90%",
-    left: "25%",
-    width: "4px",
-    height: "4px",
-    delay: "2s",
-    duration: "19s",
-  },
-  {
-    top: "15%",
-    left: "60%",
-    width: "5px",
-    height: "5px",
-    delay: "0.5s",
-    duration: "15s",
-  },
-  {
-    top: "50%",
-    left: "15%",
-    width: "3px",
-    height: "3px",
-    delay: "1.5s",
-    duration: "14s",
-  },
-  {
-    top: "75%",
-    left: "55%",
-    width: "4px",
-    height: "4px",
-    delay: "2.5s",
-    duration: "16s",
-  },
-  {
-    top: "30%",
-    left: "75%",
-    width: "5px",
-    height: "5px",
-    delay: "0s",
-    duration: "18s",
-  },
-  {
-    top: "65%",
-    left: "35%",
-    width: "3px",
-    height: "3px",
-    delay: "1s",
-    duration: "12s",
-  },
-  {
-    top: "40%",
-    left: "65%",
-    width: "4px",
-    height: "4px",
-    delay: "2s",
-    duration: "17s",
-  },
-];
-
 export function HeroSection() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [isClient, setIsClient] = useState(false);
 

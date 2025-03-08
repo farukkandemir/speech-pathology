@@ -44,7 +44,7 @@ type Recommendation = {
 };
 
 export function InteractiveQuiz() {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const [step, setStep] = useState(0);
   const [ageGroup, setAgeGroup] = useState<AgeGroup | null>(null);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
@@ -411,12 +411,14 @@ export function InteractiveQuiz() {
                 </Button>
               </a>
 
-              <button
-                onClick={handleReset}
-                className="text-sm text-center text-foreground/60 hover:text-foreground transition-colors py-2"
-              >
-                {language === "en" ? "Start Over" : "Yeniden Başla"}
-              </button>
+              <div>
+                <button
+                  onClick={handleReset}
+                  className="text-sm text-center text-foreground/60 hover:text-foreground transition-colors py-2"
+                >
+                  {language === "en" ? "Start Over" : "Yeniden Başla"}
+                </button>
+              </div>
             </div>
 
             <div className="mt-4 flex items-center justify-center text-xs text-foreground/50">
