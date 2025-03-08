@@ -29,22 +29,6 @@ export function HeroSection() {
     setIsVisible(true);
   }, []);
 
-  // Animated features
-  const features = [
-    {
-      icon: <Brain className="h-4 w-4 text-primary" />,
-      text: t("featureEvidenceBased"),
-    },
-    {
-      icon: <HeartHandshake className="h-4 w-4 text-primary" />,
-      text: t("featurePersonalized"),
-    },
-    {
-      icon: <Languages className="h-4 w-4 text-primary" />,
-      text: t("featureBilingual"),
-    },
-  ];
-
   // Expertise areas
   const expertiseAreas = [
     {
