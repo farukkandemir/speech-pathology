@@ -21,6 +21,7 @@ import {
   Languages,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
 
 // Predefined particle positions to avoid hydration errors
 const particlePositions = [
@@ -389,100 +390,19 @@ export function HeroSection() {
                   : "opacity-0 translate-y-12"
               )}
             >
-              {/* Main image container - Redesigned for minimalism */}
-              <div className="relative rounded-2xl overflow-hidden aspect-square max-w-md mx-auto">
-                {/* Minimalistic animated background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10 animate-gradient-slow">
-                  {/* Subtle animated particles */}
-                  {isClient &&
-                    particlePositions.map((particle, index) => (
-                      <div
-                        key={index}
-                        className="absolute rounded-full bg-primary/30 animate-float-particle"
-                        style={{
-                          top: particle.top,
-                          left: particle.left,
-                          width: particle.width,
-                          height: particle.height,
-                          animationDelay: particle.delay,
-                          animationDuration: particle.duration,
-                        }}
-                      ></div>
-                    ))}
+              {/* Interactive Quiz Container */}
+              <div className="relative rounded-2xl overflow-hidden bg-background/60 backdrop-blur-md p-6 max-w-md mx-auto shadow-xl border border-primary/10">
+                {/* Background elements */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-background/70"></div>
+
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-primary/20 rounded-tl-2xl"></div>
+                <div className="absolute bottom-0 right-0 w-16 h-16 border-b border-r border-primary/20 rounded-br-2xl"></div>
+
+                {/* Quiz component */}
+                <div className="relative z-10">
+                  <InteractiveQuiz />
                 </div>
-
-                {/* Central profile element */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Profile circle with animated border */}
-                    <div className="relative h-48 w-48 rounded-full bg-background/80 backdrop-blur-md border-2 border-primary/30 flex items-center justify-center overflow-hidden group">
-                      {/* Animated gradient border */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent opacity-20 animate-spin-slow"></div>
-
-                      {/* Profile content */}
-                      <div className="relative z-10 text-center p-4">
-                        <span className="text-primary text-4xl font-display">
-                          MK
-                        </span>
-                        <h3 className="text-xl font-medium mt-2">
-                          {t("heroProfileName")}
-                        </h3>
-                        <p className="text-sm text-foreground/80 mt-1">
-                          {t("heroProfileTitle")}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Floating badges - Minimalistic approach */}
-                    <div className="absolute -top-4 -right-4 h-12 w-12 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 shadow-lg flex items-center justify-center animate-float-slow">
-                      <Award className="h-6 w-6 text-primary" />
-                    </div>
-
-                    <div
-                      className="absolute -bottom-4 -left-4 h-12 w-12 rounded-full bg-background/80 backdrop-blur-md border border-secondary/20 shadow-lg flex items-center justify-center animate-float-slow"
-                      style={{ animationDelay: "1.5s" }}
-                    >
-                      <Brain className="h-6 w-6 text-secondary" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dynamic feature indicators */}
-                <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
-                  {features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="h-2 w-2 rounded-full bg-primary/50 transition-all duration-300 hover:scale-150 hover:bg-primary"
-                      style={{
-                        animationDelay: `${index * 0.5}s`,
-                        transform: `scale(${isVisible ? 1 : 0})`,
-                        opacity: isVisible ? 1 : 0,
-                        transition: `transform 0.5s ${
-                          index * 0.2
-                        }s, opacity 0.5s ${index * 0.2}s`,
-                      }}
-                    ></div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Minimalistic feature indicators */}
-              <div className="mt-8 flex justify-center gap-6">
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "flex items-center gap-2 py-1 px-3 rounded-full bg-background/50 backdrop-blur-sm border border-primary/10 transition-all duration-500",
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-4"
-                    )}
-                    style={{ transitionDelay: `${600 + index * 100}ms` }}
-                  >
-                    {feature.icon}
-                    <span className="text-xs font-medium">{feature.text}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
