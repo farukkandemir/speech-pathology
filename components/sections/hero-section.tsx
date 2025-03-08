@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
 
 export function HeroSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
@@ -105,15 +105,29 @@ export function HeroSection() {
               )}
               style={{ transitionDelay: "100ms" }}
             >
-              <span className="text-foreground">
-                {t("heroTitle").split(" ").slice(0, 2).join(" ")}
-              </span>{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-primary">
-                  {t("heroTitle").split(" ").slice(2).join(" ")}
-                </span>
-                <span className="absolute -bottom-2 left-0 w-full h-3 bg-primary/20 rounded-full -z-10"></span>
-              </span>
+              {language === "en" ? (
+                <>
+                  <span className="text-foreground block">
+                    Find Your Voice,
+                  </span>
+                  <span className="relative inline-block mt-1">
+                    <span className="relative z-10 text-primary">
+                      Express Your World
+                    </span>
+                    <span className="absolute -bottom-2 left-0 w-full h-3 bg-primary/20 rounded-full -z-10"></span>
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="text-foreground block">Sesinizi Bulun,</span>
+                  <span className="relative inline-block mt-1">
+                    <span className="relative z-10 text-primary">
+                      Dünyanızı İfade Edin
+                    </span>
+                    <span className="absolute -bottom-2 left-0 w-full h-3 bg-primary/20 rounded-full -z-10"></span>
+                  </span>
+                </>
+              )}
             </h1>
 
             {/* Description */}
