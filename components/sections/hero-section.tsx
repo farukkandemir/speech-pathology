@@ -13,6 +13,12 @@ import {
   Brain,
   HeartHandshake,
   ArrowUpRight,
+  Star,
+  Zap,
+  Lightbulb,
+  Users,
+  Award,
+  Languages,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -169,109 +175,150 @@ export function HeroSection() {
           : "Kişiselleştirilmiş Yaklaşım",
     },
     {
-      icon: <Sparkles className="h-4 w-4 text-primary" />,
+      icon: <Languages className="h-4 w-4 text-primary" />,
       text: language === "en" ? "Bilingual Support" : "İki Dilli Destek",
     },
   ];
 
-  return (
-    <section className="relative pt-20 pb-28 overflow-hidden min-h-[90vh] flex items-center">
-      {/* Enhanced background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 -z-10"></div>
-      <div className="absolute top-0 right-0 w-[70%] h-[70%] bg-primary/5 rounded-bl-[100px] -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-secondary/5 rounded-tr-[80px] -z-10"></div>
+  // Expertise areas
+  const expertiseAreas = [
+    {
+      icon: <Lightbulb className="h-4 w-4" />,
+      title: language === "en" ? "Child Development" : "Çocuk Gelişimi",
+      color: "from-blue-500/20 to-blue-600/20 text-blue-600",
+    },
+    {
+      icon: <Zap className="h-4 w-4" />,
+      title: language === "en" ? "Speech Fluency" : "Konuşma Akıcılığı",
+      color: "from-amber-500/20 to-amber-600/20 text-amber-600",
+    },
+    {
+      icon: <Star className="h-4 w-4" />,
+      title: language === "en" ? "Language Disorders" : "Dil Bozuklukları",
+      color: "from-purple-500/20 to-purple-600/20 text-purple-600",
+    },
+  ];
 
-      {/* Animated particles - only render on client side to avoid hydration errors */}
+  return (
+    <section className="relative pt-16 pb-24 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-background to-background -z-10"></div>
+
+      {/* Animated background circles */}
+      <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full bg-primary/5 blur-3xl -z-5 animate-pulse"></div>
+      <div
+        className="absolute bottom-20 left-[5%] w-72 h-72 rounded-full bg-secondary/5 blur-3xl -z-5 animate-pulse"
+        style={{ animationDelay: "1s" }}
+      ></div>
+
+      {/* Floating elements */}
       {isClient && (
-        <div className="absolute inset-0 -z-5 opacity-30">
-          {particlePositions.map((pos, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-primary/30 animate-float"
-              style={{
-                top: pos.top,
-                left: pos.left,
-                width: pos.width,
-                height: pos.height,
-                animationDuration: pos.duration,
-                animationDelay: pos.delay,
-              }}
-            ></div>
-          ))}
-        </div>
+        <>
+          <div
+            className="absolute top-1/4 right-1/3 w-12 h-12 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-md border border-primary/10 animate-float"
+            style={{ animationDuration: "15s" }}
+          ></div>
+          <div
+            className="absolute bottom-1/3 left-1/4 w-16 h-16 rounded-full bg-gradient-to-br from-secondary/10 to-secondary/5 backdrop-blur-md border border-secondary/10 animate-float"
+            style={{ animationDuration: "18s", animationDelay: "2s" }}
+          ></div>
+          <div
+            className="absolute top-1/2 right-1/4 w-8 h-8 rounded-full bg-gradient-to-br from-accent/10 to-accent/5 backdrop-blur-md border border-accent/10 animate-float"
+            style={{ animationDuration: "12s", animationDelay: "1s" }}
+          ></div>
+        </>
       )}
 
       <div className="container mx-auto px-4">
-        {/* Creative asymmetrical layout */}
-        <div className="grid grid-cols-12 gap-5">
-          {/* Main headline - spans across top */}
-          <div
-            className={cn(
-              "col-span-12 mb-10 transition-all duration-1000",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            )}
-          >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 backdrop-blur-sm border border-primary/20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          {/* Left column - Main content */}
+          <div className="relative z-10 order-2 lg:order-1">
+            {/* Animated badge */}
+            <div
+              className={cn(
+                "inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 backdrop-blur-sm border border-primary/20 transition-all duration-700",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+            >
               <span className="animate-pulse mr-2 h-2 w-2 rounded-full bg-primary"></span>
               {t("heroTagline")}
             </div>
-          </div>
 
-          {/* Left column - main content */}
-          <div
-            className={cn(
-              "col-span-12 md:col-span-6 lg:col-span-5 transition-all duration-1000 relative z-10",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            )}
-          >
-            <h1 className="text-4xl md:text-5xl font-display text-foreground leading-tight mb-5">
-              <span className="relative inline-block">
+            {/* Main headline */}
+            <h1
+              className={cn(
+                "text-4xl md:text-5xl xl:text-6xl font-display leading-tight mb-6 transition-all duration-1000",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: "100ms" }}
+            >
+              <span className="text-foreground">
                 {t("heroTitle").split(" ").slice(0, 2).join(" ")}
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary/30 rounded-full"></span>
-              </span>
-              <span className="block mt-2 text-primary">
-                {t("heroTitle").split(" ").slice(2).join(" ")}
+              </span>{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-primary">
+                  {t("heroTitle").split(" ").slice(2).join(" ")}
+                </span>
+                <span className="absolute -bottom-2 left-0 w-full h-3 bg-primary/20 rounded-full -z-10"></span>
               </span>
             </h1>
 
-            <p className="text-lg text-foreground/70 max-w-md leading-relaxed mb-8">
+            {/* Description */}
+            <p
+              className={cn(
+                "text-lg text-foreground/70 max-w-xl leading-relaxed mb-8 transition-all duration-1000",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: "200ms" }}
+            >
               {t("heroDescription")}
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "flex items-center gap-3 bg-background/80 backdrop-blur-sm px-4 py-2.5 rounded-md border border-border/50 shadow-sm transition-all duration-700 text-sm hover:bg-background hover:border-primary/30",
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-4"
-                  )}
-                  style={{ transitionDelay: `${index * 150}ms` }}
-                >
-                  <div className="p-1.5 rounded-full bg-primary/10">
-                    {feature.icon}
-                  </div>
-                  <span className="font-medium">{feature.text}</span>
-                </div>
-              ))}
-            </div>
-
+            {/* Expertise areas */}
             <div
               className={cn(
-                "flex gap-4 transition-all duration-1000",
+                "grid grid-cols-1 md:grid-cols-3 gap-3 mb-8 transition-all duration-1000",
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               )}
               style={{ transitionDelay: "300ms" }}
             >
-              <Button size="default" className="group relative overflow-hidden">
+              {expertiseAreas.map((area, index) => (
+                <div
+                  key={index}
+                  className={cn(
+                    "relative group p-3 rounded-lg bg-gradient-to-br border border-white/10 backdrop-blur-sm transition-all duration-300 hover:shadow-md",
+                    area.color
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="p-1.5 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
+                      {area.icon}
+                    </div>
+                    <p className="font-medium text-sm">{area.title}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA buttons */}
+            <div
+              className={cn(
+                "flex flex-wrap gap-4 transition-all duration-1000",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: "400ms" }}
+            >
+              <Button size="lg" className="group relative overflow-hidden">
                 <span className="relative z-10 flex items-center gap-2 text-base">
                   <Calendar className="h-5 w-5" />
                   {t("heroButton")}
@@ -280,7 +327,7 @@ export function HeroSection() {
                 <span className="absolute inset-0 bg-primary group-hover:bg-primary/90 transition-colors duration-300"></span>
               </Button>
               <Button
-                size="default"
+                size="lg"
                 variant="outline"
                 className="group text-base border-primary/20 hover:border-primary/50 hover:bg-primary/5"
               >
@@ -288,192 +335,187 @@ export function HeroSection() {
                 {t("contact")}
               </Button>
             </div>
-          </div>
 
-          {/* Center column - subtitle and stats */}
-          <div
-            className={cn(
-              "col-span-12 md:col-span-6 lg:col-span-3 md:mt-16 transition-all duration-1000 relative z-10",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            )}
-            style={{ transitionDelay: "150ms" }}
-          >
-            <div className="bg-background/40 backdrop-blur-md p-6 rounded-2xl border border-border/50 shadow-lg relative mb-6">
-              <h2 className="text-xl md:text-2xl text-foreground/90 font-medium leading-tight mb-3">
-                {t("heroSubtitle")}
-              </h2>
-
-              <div className="absolute -top-3 -right-3 bg-primary/10 rounded-full p-2.5">
-                <Sparkles className="h-5 w-5 text-primary" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-background/40 backdrop-blur-md p-5 rounded-xl border border-border/50 text-center">
-                <span className="text-2xl font-display text-primary block">
-                  10+
-                </span>
-                <p className="text-sm text-muted-foreground">
-                  {t("aboutExperience")}
-                </p>
-              </div>
-              <div className="bg-background/40 backdrop-blur-md p-5 rounded-xl border border-border/50 text-center">
-                <span className="text-2xl font-display text-primary block">
-                  500+
-                </span>
-                <p className="text-sm text-muted-foreground">
-                  {t("aboutClients")}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right column - profile card */}
-          <div
-            className={cn(
-              "col-span-12 lg:col-span-4 transition-all duration-1000 relative z-10 mt-8 lg:mt-0 lg:-ml-6",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-12"
-            )}
-            style={{ transitionDelay: "250ms" }}
-          >
-            <div className="relative">
-              <div className="absolute -top-6 -left-6 w-28 h-28 bg-accent/10 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-6 -right-6 w-36 h-36 bg-primary/10 rounded-full blur-xl"></div>
-
-              <div className="relative bg-background/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl border border-border/30">
-                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary/50 via-secondary/50 to-accent/50"></div>
-
-                <div className="p-6">
-                  <div className="flex items-center gap-5 mb-5">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
-                      <span className="text-primary text-2xl font-display relative z-10">
-                        MK
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium">Müberra Kandemir</h3>
-                      <p className="text-base text-foreground/70">
-                        {language === "en"
-                          ? "Speech Pathologist"
-                          : "Konuşma Patoloğu"}
-                      </p>
-                      <div className="flex items-center mt-1.5">
-                        <span className="flex h-2 w-2 rounded-full bg-green-500 mr-2"></span>
-                        <span className="text-sm text-foreground/60">
-                          {language === "en" ? "Available" : "Müsait"}
+            {/* Trust indicators */}
+            <div
+              className={cn(
+                "mt-12 flex items-center gap-6 transition-all duration-1000",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: "500ms" }}
+            >
+              <div className="flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div
+                      key={i}
+                      className="h-8 w-8 rounded-full bg-gradient-to-br from-background to-muted ring-2 ring-background overflow-hidden"
+                    >
+                      <div className="w-full h-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-primary text-xs font-medium">
+                          {String.fromCharCode(64 + i)}
                         </span>
                       </div>
                     </div>
-                  </div>
+                  ))}
+                </div>
+                <div className="text-sm text-foreground/70">
+                  <span className="font-medium">500+</span>{" "}
+                  {language === "en" ? "satisfied clients" : "memnun danışan"}
+                </div>
+              </div>
 
-                  <div className="space-y-4 mb-5">
-                    <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-secondary/10 flex items-center justify-center">
-                        <MessageCircle className="h-4.5 w-4.5 text-secondary" />
-                      </div>
-                      <div className="text-sm">
-                        <div className="font-medium">
-                          {language === "en"
-                            ? "Speech Therapy"
-                            : "Konuşma Terapisi"}
-                        </div>
-                        <div className="text-foreground/60 text-xs">
-                          {language === "en"
-                            ? "Personalized sessions"
-                            : "Kişiselleştirilmiş seanslar"}
-                        </div>
-                      </div>
-                      <div className="ml-auto">
-                        <div className="h-2 w-20 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full w-4/5 bg-secondary rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
+              <div className="h-10 w-px bg-border"></div>
 
-                    <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center">
-                        <CheckCircle2 className="h-4.5 w-4.5 text-primary" />
-                      </div>
-                      <div className="text-sm">
-                        <div className="font-medium">
-                          {language === "en"
-                            ? "Certified Expert"
-                            : "Sertifikalı Uzman"}
-                        </div>
-                        <div className="text-foreground/60 text-xs">
-                          {language === "en"
-                            ? "10+ years experience"
-                            : "10+ yıl deneyim"}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex -space-x-2">
-                      {[1, 2, 3, 4].map((i) => (
-                        <div
-                          key={i}
-                          className="h-8 w-8 rounded-full bg-primary/10 ring-1 ring-background flex items-center justify-center text-xs font-medium text-primary"
-                        >
-                          {String.fromCharCode(64 + i)}
-                        </div>
-                      ))}
-                      <div className="h-8 w-8 rounded-full bg-primary/10 ring-1 ring-background flex items-center justify-center text-xs font-medium text-primary">
-                        +
-                      </div>
-                    </div>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="h-8 text-sm px-3 py-0"
-                    >
-                      <ArrowUpRight className="h-3.5 w-3.5 mr-1.5" />
-                      {language === "en" ? "Profile" : "Profil"}
-                    </Button>
-                  </div>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                </div>
+                <div className="text-sm text-foreground/70">
+                  <span className="font-medium">5.0</span>{" "}
+                  {language === "en" ? "rating" : "değerlendirme"}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom accent elements */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-5 mt-10">
+          {/* Right column - Visual elements */}
+          <div className="relative z-10 order-1 lg:order-2">
             <div
               className={cn(
-                "inline-flex items-center gap-2 text-sm text-foreground/60 transition-all duration-1000",
+                "relative transition-all duration-1000 transform",
                 isVisible
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  : "opacity-0 translate-y-12"
               )}
-              style={{ transitionDelay: "450ms" }}
             >
-              <span className="block h-px w-16 bg-border"></span>
-              {language === "en"
-                ? "Scroll to explore"
-                : "Keşfetmek için kaydırın"}
+              {/* Main image container */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/5] max-w-md mx-auto">
+                {/* Decorative top gradient bar */}
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-secondary to-accent z-10"></div>
+
+                {/* Placeholder colored background instead of image */}
+                <div className="w-full h-full bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30 flex items-center justify-center">
+                  <div className="text-center p-6">
+                    <div className="h-24 w-24 rounded-full bg-background/40 backdrop-blur-md border border-white/20 flex items-center justify-center mx-auto mb-4">
+                      <span className="text-primary text-3xl font-display">
+                        MK
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-medium text-background">
+                      Müberra Kandemir
+                    </h3>
+                    <p className="text-sm text-background/80 mt-1">
+                      {language === "en"
+                        ? "Speech Pathologist"
+                        : "Konuşma Patoloğu"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+                {/* Floating info card */}
+                <div className="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-background/80 backdrop-blur-md border border-white/20 shadow-lg">
+                  <div className="flex items-start gap-4">
+                    <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                      <span className="text-primary text-lg font-display">
+                        MK
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium">Müberra Kandemir</h3>
+                      <p className="text-sm text-foreground/70">
+                        {language === "en"
+                          ? "Speech Pathologist"
+                          : "Konuşma Patoloğu"}
+                      </p>
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className="flex h-2 w-2 rounded-full bg-green-500"></span>
+                        <span className="text-xs text-foreground/70">
+                          {language === "en"
+                            ? "Available for consultations"
+                            : "Danışmanlık için müsait"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating achievement badges */}
+                <div className="absolute top-6 right-6 p-3 rounded-lg bg-background/70 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-2">
+                  <Award className="h-5 w-5 text-amber-500" />
+                  <span className="text-sm font-medium">
+                    {language === "en"
+                      ? "Certified Expert"
+                      : "Sertifikalı Uzman"}
+                  </span>
+                </div>
+
+                <div className="absolute top-24 right-6 p-3 rounded-lg bg-background/70 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-2">
+                  <Users className="h-5 w-5 text-blue-500" />
+                  <span className="text-sm font-medium">
+                    {language === "en"
+                      ? "10+ Years Experience"
+                      : "10+ Yıl Deneyim"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Floating feature cards */}
+              <div className="absolute -bottom-6 -left-12 p-3 rounded-xl bg-background/90 backdrop-blur-md border border-white/20 shadow-lg max-w-[180px] hidden md:block">
+                <div className="flex items-start gap-2.5">
+                  <div className="p-1.5 rounded-full bg-primary/10 text-primary">
+                    <Brain className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-xs">
+                      {language === "en"
+                        ? "Speech Therapy"
+                        : "Konuşma Terapisi"}
+                    </h4>
+                    <p className="text-xs text-foreground/70 mt-0.5">
+                      {language === "en"
+                        ? "Personalized sessions for all ages"
+                        : "Her yaş için kişiselleştirilmiş seanslar"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute -top-6 -right-12 p-3 rounded-xl bg-background/90 backdrop-blur-md border border-white/20 shadow-lg max-w-[180px] hidden md:block">
+                <div className="flex items-start gap-2.5">
+                  <div className="p-1.5 rounded-full bg-secondary/10 text-secondary">
+                    <Languages className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-xs">
+                      {language === "en"
+                        ? "Bilingual Support"
+                        : "İki Dilli Destek"}
+                    </h4>
+                    <p className="text-xs text-foreground/70 mt-0.5">
+                      {language === "en"
+                        ? "English & Turkish fluency"
+                        : "İngilizce & Türkçe akıcılık"}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-1/4 h-2.5 w-2.5 rounded-full bg-primary animate-ping"></div>
-      <div
-        className="absolute bottom-1/3 left-1/3 h-2.5 w-2.5 rounded-full bg-accent animate-ping"
-        style={{ animationDelay: "1s" }}
-      ></div>
-      <div
-        className="absolute top-2/3 right-1/3 h-2.5 w-2.5 rounded-full bg-secondary animate-ping"
-        style={{ animationDelay: "2s" }}
-      ></div>
-
-      {/* Decorative wave svg */}
+      {/* Bottom wave decoration */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
