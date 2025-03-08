@@ -26,7 +26,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 export function AboutSection() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 

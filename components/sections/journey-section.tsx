@@ -7,7 +7,6 @@ import {
   ArrowRight,
   MessageCircle,
   Calendar,
-  CheckCircle2,
   Sparkles,
   Brain,
   HeartHandshake,

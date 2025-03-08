@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/language-context";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { Calendar, ChevronDown, Menu, X } from "lucide-react";
+import { Calendar, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
