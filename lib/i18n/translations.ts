@@ -27,6 +27,14 @@ export const translations = {
     expertiseFluency: "Speech Fluency",
     expertiseLanguage: "Language Disorders",
 
+    // Journey Section
+    journey: "Journey",
+    journeyTitle: "The Therapy Journey",
+    journeySubtitle:
+      "Follow the transformative path from challenge to confidence",
+    journeyStage: "Stage",
+    journeyProvenResults: "Proven Results",
+
     // About Section
     aboutTitle: "About Müberra",
     aboutDescription:
@@ -214,6 +222,13 @@ export const translations = {
     expertiseChild: "Çocuk Gelişimi",
     expertiseFluency: "Konuşma Akıcılığı",
     expertiseLanguage: "Dil Bozuklukları",
+
+    // Journey Section
+    journey: "Yolculuk",
+    journeyTitle: "Terapi Yolculuğu",
+    journeySubtitle: "Zorluktan özgüvene dönüşüm yolculuğunu takip edin",
+    journeyStage: "Aşama",
+    journeyProvenResults: "Kanıtlanmış Sonuçlar",
 
     // About Section
     aboutTitle: "Müberra Hakkında",

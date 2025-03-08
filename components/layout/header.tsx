@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Header() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -32,7 +32,14 @@ export function Header() {
       setIsScrolled(currentScrollPos > 10);
 
       // Update active section based on scroll position
-      const sections = ["contact", "testimonials", "services", "about", "home"];
+      const sections = [
+        "contact",
+        "testimonials",
+        "journey",
+        "services",
+        "about",
+        "home",
+      ];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -53,6 +60,11 @@ export function Header() {
     { href: "#", label: t("home"), id: "home" },
     { href: "#about", label: t("about"), id: "about" },
     { href: "#services", label: t("services"), id: "services" },
+    {
+      href: "#journey",
+      label: language === "en" ? "Journey" : "Yolculuk",
+      id: "journey",
+    },
     { href: "#testimonials", label: t("testimonials"), id: "testimonials" },
     { href: "#contact", label: t("contact"), id: "contact" },
   ];
