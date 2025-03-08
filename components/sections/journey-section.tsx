@@ -22,15 +22,9 @@ export function JourneySection() {
   const [activeScene, setActiveScene] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Mark as client-side rendered
-    setIsClient(true);
-    // Trigger animations after component mounts
-    setIsVisible(true);
-
+    // Set up scroll event listener
     const handleScroll = () => {
       if (!containerRef.current) return;
 
