@@ -152,6 +152,31 @@ export const translations = {
     phoneContact: "Phone",
     emailContact: "Email",
     findUs: "Find Us",
+
+    // Additional Contact Section Translations
+    contactGetInTouch: "Get in Touch",
+    contactOffice: "Office",
+    contactOfficeHours: "Office Hours",
+    contactOfficeHoursValue: "Mon-Fri: 9AM-6PM",
+    contactSendEmail: "Send Email",
+    contactLetsConnect: "Let's Connect",
+    contactHelpIntro:
+      "I'm here to help with your speech therapy needs. Feel free to reach out through any of the channels below.",
+    contactCanHelpWith: "I can help you with:",
+    contactScheduleSession: "Schedule a Session",
+    contactAskQuestion: "Ask a Question",
+    contactRequestInfo: "Request Information",
+    contactSendMessage: "Send a Message",
+    contactFormIntro:
+      "Fill out the form below and Müberra will get back to you soon.",
+    contactThankYou: "Thank you for your message!",
+    contactWillRespond: "Müberra will get back to you as soon as possible.",
+    contactSendAnother: "Send another message",
+    contactProcessing: "Processing...",
+    contactConsent:
+      "By submitting this form, you agree to be contacted by Müberra Kandemir regarding your request.",
+    contactScheduleDirect: "Prefer to schedule directly?",
+    contactScheduleConsultation: "Schedule a Consultation",
   },
 
   tr: {
@@ -222,7 +247,7 @@ export const translations = {
     // About Section - Education
     aboutAcademicBackground: "Akademik Geçmiş",
     aboutAcademicDesc:
-      "Kariyerimi, kapsamlı eğitim ve sürekli mesleki gelişim yoluyla konuşma ve dil bozukluklarını anlamaya ve tedavi etmeye adadım. Akademik yolculuğum, konuşma patolojisi tekniklerinin hem teorik bilgisi hem de pratik uygulamaları konusunda bana güçlü bir temel sağladı.",
+      "Kariyerimi, kapsamlı eğitim ve sürekli mesleki gelişim yoluyla konuşma ve dil bozukluklarını anlamaya ve tedavi etmeye adadım. Akademik yolculuğum, konuşma patolojisindeki tekniklerin hem teorik bilgisi hem de pratik uygulamaları konusunda bana güçlü bir temel sağladı.",
     aboutMasters: "Dil ve Konuşma Terapisi Yüksek Lisansı",
     aboutBachelors: "Konuşma ve İşitme Bilimleri Lisansı",
     aboutCertificate: "Pediatrik Konuşma Terapisi Sertifikası",
@@ -304,5 +329,30 @@ export const translations = {
     phoneContact: "Telefon",
     emailContact: "E-posta",
     findUs: "Bizi Bulun",
+
+    // Additional Contact Section Translations
+    contactGetInTouch: "İletişime Geçin",
+    contactOffice: "Ofis",
+    contactOfficeHours: "Çalışma Saatleri",
+    contactOfficeHoursValue: "Pzt-Cum: 9:00-18:00",
+    contactSendEmail: "E-posta Gönder",
+    contactLetsConnect: "Hadi Bağlanalım",
+    contactHelpIntro:
+      "Konuşma terapisi ihtiyaçlarınız için buradayım. Aşağıdaki kanallardan herhangi biri aracılığıyla benimle iletişime geçebilirsiniz.",
+    contactCanHelpWith: "Size şunlarda yardımcı olabilirim:",
+    contactScheduleSession: "Seans Planlayın",
+    contactAskQuestion: "Soru Sorun",
+    contactRequestInfo: "Bilgi İsteyin",
+    contactSendMessage: "Mesaj Gönder",
+    contactFormIntro:
+      "Aşağıdaki formu doldurun, Müberra en kısa sürede size geri dönecektir.",
+    contactThankYou: "Mesajınız için teşekkürler!",
+    contactWillRespond: "Müberra en kısa sürede size geri dönecektir.",
+    contactSendAnother: "Başka bir mesaj gönder",
+    contactProcessing: "İşleniyor...",
+    contactConsent:
+      "Bu formu göndererek, isteğinizle ilgili olarak Müberra Kandemir tarafından sizinle iletişime geçilmesini kabul etmiş olursunuz.",
+    contactScheduleDirect: "Doğrudan randevu almak mı istiyorsunuz?",
+    contactScheduleConsultation: "Danışma Randevusu Alın",
   },
 };

@@ -72,7 +72,7 @@ export function ContactSection() {
   const contactInfo = [
     {
       icon: <Building className="h-5 w-5" />,
-      title: language === "en" ? "Office" : "Ofis",
+      title: t("contactOffice"),
       details: "Rota Rehabilitation Center",
       color: "text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400",
     },
@@ -83,14 +83,14 @@ export function ContactSection() {
       color:
         "text-amber-600 bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400",
       action: {
-        label: language === "en" ? "Send Email" : "E-posta Gönder",
+        label: t("contactSendEmail"),
         href: "mailto:muberra@kandemir.com.tr",
       },
     },
     {
       icon: <Clock className="h-5 w-5" />,
-      title: language === "en" ? "Office Hours" : "Çalışma Saatleri",
-      details: language === "en" ? "Mon-Fri: 9AM-6PM" : "Pzt-Cum: 9:00-18:00",
+      title: t("contactOfficeHours"),
+      details: t("contactOfficeHoursValue"),
       color:
         "text-purple-600 bg-purple-100 dark:bg-purple-900/30 dark:text-purple-400",
     },
@@ -100,18 +100,18 @@ export function ContactSection() {
   const contactReasons = [
     {
       icon: <CalendarDays className="h-5 w-5" />,
-      title: language === "en" ? "Schedule a Session" : "Seans Planlayın",
+      title: t("contactScheduleSession"),
       color: "text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400",
     },
     {
       icon: <MessageCircle className="h-5 w-5" />,
-      title: language === "en" ? "Ask a Question" : "Soru Sorun",
+      title: t("contactAskQuestion"),
       color:
         "text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400",
     },
     {
       icon: <Sparkles className="h-5 w-5" />,
-      title: language === "en" ? "Request Information" : "Bilgi İsteyin",
+      title: t("contactRequestInfo"),
       color:
         "text-amber-600 bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400",
     },
@@ -136,15 +136,13 @@ export function ContactSection() {
           )}
         >
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            {language === "en" ? "Get in Touch" : "İletişime Geçin"}
+            {t("contactGetInTouch")}
           </div>
           <h2 className="text-3xl md:text-4xl font-display text-foreground mb-4">
             {t("contactTitle")}
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            {language === "en"
-              ? "I'm here to help with your speech therapy needs"
-              : "Konuşma terapisi ihtiyaçlarınız için buradayım"}
+            {t("contactSubtitle")}
           </p>
 
           {/* Horizontal line with gradient */}
@@ -207,22 +205,18 @@ export function ContactSection() {
               {/* Left side - Text content */}
               <div className="md:flex-1">
                 <h3 className="text-2xl font-display mb-3 text-foreground">
-                  {language === "en" ? "Let's Connect" : "Hadi Bağlanalım"}
+                  {t("contactLetsConnect")}
                 </h3>
 
                 <p className="text-foreground/70 mb-0">
-                  {language === "en"
-                    ? "I'm here to help with your speech therapy needs. Feel free to reach out through any of the channels below."
-                    : "Konuşma terapisi ihtiyaçlarınız için buradayım. Aşağıdaki kanallardan herhangi biri aracılığıyla benimle iletişime geçebilirsiniz."}
+                  {t("contactHelpIntro")}
                 </p>
               </div>
 
               {/* Right side - Contact reasons */}
               <div className="shrink-0 md:w-auto md:min-w-[220px]">
                 <p className="text-sm font-medium text-foreground/80 mb-3">
-                  {language === "en"
-                    ? "I can help you with:"
-                    : "Size şunlarda yardımcı olabilirim:"}
+                  {t("contactCanHelpWith")}
                 </p>
                 <div className="flex flex-col gap-2">
                   {contactReasons.map((reason, index) => (
@@ -254,23 +248,15 @@ export function ContactSection() {
                   <CheckCircle2 className="w-10 h-10 text-primary" />
                 </div>
                 <h3 className="text-2xl font-display mb-3">
-                  {language === "en"
-                    ? "Thank you for your message!"
-                    : "Mesajınız için teşekkürler!"}
+                  {t("contactThankYou")}
                 </h3>
-                <p className="text-foreground/70">
-                  {language === "en"
-                    ? "Müberra will get back to you as soon as possible."
-                    : "Müberra en kısa sürede size geri dönecektir."}
-                </p>
+                <p className="text-foreground/70">{t("contactWillRespond")}</p>
                 <Button
                   className="mt-8"
                   variant="outline"
                   onClick={() => setIsSubmitted(false)}
                 >
-                  {language === "en"
-                    ? "Send another message"
-                    : "Başka bir mesaj gönder"}
+                  {t("contactSendAnother")}
                 </Button>
               </div>
             ) : (
@@ -279,14 +265,12 @@ export function ContactSection() {
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
                   <div>
                     <h3 className="text-2xl font-display mb-2">
-                      {language === "en" ? "Send a Message" : "Mesaj Gönder"}
+                      {t("contactSendMessage")}
                     </h3>
                     <div className="h-1 w-20 bg-gradient-to-r from-primary/50 to-transparent rounded-full"></div>
                   </div>
                   <p className="text-sm text-foreground/70">
-                    {language === "en"
-                      ? "Fill out the form below and Müberra will get back to you soon."
-                      : "Aşağıdaki formu doldurun, Müberra en kısa sürede size geri dönecektir."}
+                    {t("contactFormIntro")}
                   </p>
                 </div>
 
@@ -381,9 +365,7 @@ export function ContactSection() {
                 {/* Horizontal layout for form footer */}
                 <div className="flex flex-col md:flex-row md:items-center gap-5 justify-between">
                   <p className="text-xs text-foreground/60 max-w-sm">
-                    {language === "en"
-                      ? "By submitting this form, you agree to be contacted by Müberra Kandemir regarding your request."
-                      : "Bu formu göndererek, isteğinizle ilgili olarak Müberra Kandemir tarafından sizinle iletişime geçilmesini kabul etmiş olursunuz."}
+                    {t("contactConsent")}
                   </p>
                   <Button
                     type="submit"
@@ -413,7 +395,7 @@ export function ContactSection() {
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                           ></path>
                         </svg>
-                        {language === "en" ? "Processing..." : "İşleniyor..."}
+                        {t("contactProcessing")}
                       </div>
                     ) : (
                       <div className="flex items-center justify-center">
@@ -442,15 +424,11 @@ export function ContactSection() {
                 <CalendarDays className="h-5 w-5" />
               </div>
               <p className="text-sm font-medium">
-                {language === "en"
-                  ? "Prefer to schedule directly?"
-                  : "Doğrudan randevu almak mı istiyorsunuz?"}
+                {t("contactScheduleDirect")}
               </p>
             </div>
             <Button className="group whitespace-nowrap">
-              {language === "en"
-                ? "Schedule a Consultation"
-                : "Danışma Randevusu Alın"}
+              {t("contactScheduleConsultation")}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
