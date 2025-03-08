@@ -16,6 +16,16 @@ export const translations = {
     heroDescription:
       "Helping children and adults overcome communication barriers with personalized, evidence-based therapy in a supportive environment.",
     heroButton: "Book Consultation",
+    heroProfileName: "Müberra Kandemir",
+    heroProfileTitle: "Speech Pathologist",
+    heroSatisfiedClients: "satisfied clients",
+    heroRating: "rating",
+    featureEvidenceBased: "Evidence-Based Methods",
+    featurePersonalized: "Personalized Approach",
+    featureBilingual: "Bilingual Support",
+    expertiseChild: "Child Development",
+    expertiseFluency: "Speech Fluency",
+    expertiseLanguage: "Language Disorders",
 
     // About Section
     aboutTitle: "About Müberra",
@@ -193,7 +203,17 @@ export const translations = {
     heroTagline: "Profesyonel Konuşma Patoloğu",
     heroDescription:
       "Destekleyici bir ortamda kişiselleştirilmiş, kanıta dayalı terapi ile çocukların ve yetişkinlerin iletişim engellerini aşmalarına yardımcı oluyorum.",
-    heroButton: "Randevu Al",
+    heroButton: "Danışma Randevusu Alın",
+    heroProfileName: "Müberra Kandemir",
+    heroProfileTitle: "Konuşma Patoloğu",
+    heroSatisfiedClients: "memnun danışan",
+    heroRating: "değerlendirme",
+    featureEvidenceBased: "Kanıta Dayalı Yöntemler",
+    featurePersonalized: "Kişiselleştirilmiş Yaklaşım",
+    featureBilingual: "İki Dilli Destek",
+    expertiseChild: "Çocuk Gelişimi",
+    expertiseFluency: "Konuşma Akıcılığı",
+    expertiseLanguage: "Dil Bozuklukları",
 
     // About Section
     aboutTitle: "Müberra Hakkında",

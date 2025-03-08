@@ -162,21 +162,15 @@ export function HeroSection() {
   const features = [
     {
       icon: <Brain className="h-4 w-4 text-primary" />,
-      text:
-        language === "en"
-          ? "Evidence-Based Methods"
-          : "Kanıta Dayalı Yöntemler",
+      text: t("featureEvidenceBased"),
     },
     {
       icon: <HeartHandshake className="h-4 w-4 text-primary" />,
-      text:
-        language === "en"
-          ? "Personalized Approach"
-          : "Kişiselleştirilmiş Yaklaşım",
+      text: t("featurePersonalized"),
     },
     {
       icon: <Languages className="h-4 w-4 text-primary" />,
-      text: language === "en" ? "Bilingual Support" : "İki Dilli Destek",
+      text: t("featureBilingual"),
     },
   ];
 
@@ -184,17 +178,17 @@ export function HeroSection() {
   const expertiseAreas = [
     {
       icon: <Lightbulb className="h-4 w-4" />,
-      title: language === "en" ? "Child Development" : "Çocuk Gelişimi",
+      title: t("expertiseChild"),
       color: "from-blue-500/20 to-blue-600/20 text-blue-600",
     },
     {
       icon: <Zap className="h-4 w-4" />,
-      title: language === "en" ? "Speech Fluency" : "Konuşma Akıcılığı",
+      title: t("expertiseFluency"),
       color: "from-amber-500/20 to-amber-600/20 text-amber-600",
     },
     {
       icon: <Star className="h-4 w-4" />,
-      title: language === "en" ? "Language Disorders" : "Dil Bozuklukları",
+      title: t("expertiseLanguage"),
       color: "from-purple-500/20 to-purple-600/20 text-purple-600",
     },
   ];
@@ -363,7 +357,7 @@ export function HeroSection() {
                 </div>
                 <div className="text-sm text-foreground/70">
                   <span className="font-medium">500+</span>{" "}
-                  {language === "en" ? "satisfied clients" : "memnun danışan"}
+                  {t("heroSatisfiedClients")}
                 </div>
               </div>
 
@@ -379,8 +373,7 @@ export function HeroSection() {
                   ))}
                 </div>
                 <div className="text-sm text-foreground/70">
-                  <span className="font-medium">5.0</span>{" "}
-                  {language === "en" ? "rating" : "değerlendirme"}
+                  <span className="font-medium">5.0</span> {t("heroRating")}
                 </div>
               </div>
             </div>
@@ -396,119 +389,100 @@ export function HeroSection() {
                   : "opacity-0 translate-y-12"
               )}
             >
-              {/* Main image container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/5] max-w-md mx-auto">
-                {/* Decorative top gradient bar */}
-                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-secondary to-accent z-10"></div>
-
-                {/* Placeholder colored background instead of image */}
-                <div className="w-full h-full bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30 flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <div className="h-24 w-24 rounded-full bg-background/40 backdrop-blur-md border border-white/20 flex items-center justify-center mx-auto mb-4">
-                      <span className="text-primary text-3xl font-display">
-                        MK
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-medium text-background">
-                      Müberra Kandemir
-                    </h3>
-                    <p className="text-sm text-background/80 mt-1">
-                      {language === "en"
-                        ? "Speech Pathologist"
-                        : "Konuşma Patoloğu"}
-                    </p>
-                  </div>
+              {/* Main image container - Redesigned for minimalism */}
+              <div className="relative rounded-2xl overflow-hidden aspect-square max-w-md mx-auto">
+                {/* Minimalistic animated background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10 animate-gradient-slow">
+                  {/* Subtle animated particles */}
+                  {isClient &&
+                    particlePositions.map((particle, index) => (
+                      <div
+                        key={index}
+                        className="absolute rounded-full bg-primary/30 animate-float-particle"
+                        style={{
+                          top: particle.top,
+                          left: particle.left,
+                          width: particle.width,
+                          height: particle.height,
+                          animationDelay: particle.delay,
+                          animationDuration: particle.duration,
+                        }}
+                      ></div>
+                    ))}
                 </div>
 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                {/* Central profile element */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative">
+                    {/* Profile circle with animated border */}
+                    <div className="relative h-48 w-48 rounded-full bg-background/80 backdrop-blur-md border-2 border-primary/30 flex items-center justify-center overflow-hidden group">
+                      {/* Animated gradient border */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent opacity-20 animate-spin-slow"></div>
 
-                {/* Floating info card */}
-                <div className="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-background/80 backdrop-blur-md border border-white/20 shadow-lg">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                      <span className="text-primary text-lg font-display">
-                        MK
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium">Müberra Kandemir</h3>
-                      <p className="text-sm text-foreground/70">
-                        {language === "en"
-                          ? "Speech Pathologist"
-                          : "Konuşma Patoloğu"}
-                      </p>
-                      <div className="flex items-center gap-2 mt-2">
-                        <span className="flex h-2 w-2 rounded-full bg-green-500"></span>
-                        <span className="text-xs text-foreground/70">
-                          {language === "en"
-                            ? "Available for consultations"
-                            : "Danışmanlık için müsait"}
+                      {/* Profile content */}
+                      <div className="relative z-10 text-center p-4">
+                        <span className="text-primary text-4xl font-display">
+                          MK
                         </span>
+                        <h3 className="text-xl font-medium mt-2">
+                          {t("heroProfileName")}
+                        </h3>
+                        <p className="text-sm text-foreground/80 mt-1">
+                          {t("heroProfileTitle")}
+                        </p>
                       </div>
                     </div>
+
+                    {/* Floating badges - Minimalistic approach */}
+                    <div className="absolute -top-4 -right-4 h-12 w-12 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 shadow-lg flex items-center justify-center animate-float-slow">
+                      <Award className="h-6 w-6 text-primary" />
+                    </div>
+
+                    <div
+                      className="absolute -bottom-4 -left-4 h-12 w-12 rounded-full bg-background/80 backdrop-blur-md border border-secondary/20 shadow-lg flex items-center justify-center animate-float-slow"
+                      style={{ animationDelay: "1.5s" }}
+                    >
+                      <Brain className="h-6 w-6 text-secondary" />
+                    </div>
                   </div>
                 </div>
 
-                {/* Floating achievement badges */}
-                <div className="absolute top-6 right-6 p-3 rounded-lg bg-background/70 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-2">
-                  <Award className="h-5 w-5 text-amber-500" />
-                  <span className="text-sm font-medium">
-                    {language === "en"
-                      ? "Certified Expert"
-                      : "Sertifikalı Uzman"}
-                  </span>
-                </div>
-
-                <div className="absolute top-24 right-6 p-3 rounded-lg bg-background/70 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-2">
-                  <Users className="h-5 w-5 text-blue-500" />
-                  <span className="text-sm font-medium">
-                    {language === "en"
-                      ? "10+ Years Experience"
-                      : "10+ Yıl Deneyim"}
-                  </span>
+                {/* Dynamic feature indicators */}
+                <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
+                  {features.map((feature, index) => (
+                    <div
+                      key={index}
+                      className="h-2 w-2 rounded-full bg-primary/50 transition-all duration-300 hover:scale-150 hover:bg-primary"
+                      style={{
+                        animationDelay: `${index * 0.5}s`,
+                        transform: `scale(${isVisible ? 1 : 0})`,
+                        opacity: isVisible ? 1 : 0,
+                        transition: `transform 0.5s ${
+                          index * 0.2
+                        }s, opacity 0.5s ${index * 0.2}s`,
+                      }}
+                    ></div>
+                  ))}
                 </div>
               </div>
 
-              {/* Floating feature cards */}
-              <div className="absolute -bottom-6 -left-12 p-3 rounded-xl bg-background/90 backdrop-blur-md border border-white/20 shadow-lg max-w-[180px] hidden md:block">
-                <div className="flex items-start gap-2.5">
-                  <div className="p-1.5 rounded-full bg-primary/10 text-primary">
-                    <Brain className="h-4 w-4" />
+              {/* Minimalistic feature indicators */}
+              <div className="mt-8 flex justify-center gap-6">
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "flex items-center gap-2 py-1 px-3 rounded-full bg-background/50 backdrop-blur-sm border border-primary/10 transition-all duration-500",
+                      isVisible
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-4"
+                    )}
+                    style={{ transitionDelay: `${600 + index * 100}ms` }}
+                  >
+                    {feature.icon}
+                    <span className="text-xs font-medium">{feature.text}</span>
                   </div>
-                  <div>
-                    <h4 className="font-medium text-xs">
-                      {language === "en"
-                        ? "Speech Therapy"
-                        : "Konuşma Terapisi"}
-                    </h4>
-                    <p className="text-xs text-foreground/70 mt-0.5">
-                      {language === "en"
-                        ? "Personalized sessions for all ages"
-                        : "Her yaş için kişiselleştirilmiş seanslar"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -top-6 -right-12 p-3 rounded-xl bg-background/90 backdrop-blur-md border border-white/20 shadow-lg max-w-[180px] hidden md:block">
-                <div className="flex items-start gap-2.5">
-                  <div className="p-1.5 rounded-full bg-secondary/10 text-secondary">
-                    <Languages className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-xs">
-                      {language === "en"
-                        ? "Bilingual Support"
-                        : "İki Dilli Destek"}
-                    </h4>
-                    <p className="text-xs text-foreground/70 mt-0.5">
-                      {language === "en"
-                        ? "English & Turkish fluency"
-                        : "İngilizce & Türkçe akıcılık"}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
