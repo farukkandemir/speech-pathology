@@ -146,7 +146,7 @@ export function ServicesSection() {
     },
   ];
 
-  // Service process steps
+  // Process steps
   const processSteps = [
     {
       icon: <Clock className="h-5 w-5" />,
@@ -155,6 +155,9 @@ export function ServicesSection() {
         language === "en"
           ? "Comprehensive evaluation to understand your specific needs"
           : "Özel ihtiyaçlarınızı anlamak için kapsamlı değerlendirme",
+      color: "from-blue-500/20 to-blue-600/20",
+      textColor: "text-blue-600 dark:text-blue-400",
+      iconBg: "bg-blue-100 dark:bg-blue-900/30",
     },
     {
       icon: <Brain className="h-5 w-5" />,
@@ -164,6 +167,9 @@ export function ServicesSection() {
         language === "en"
           ? "Custom therapy program designed for your goals"
           : "Hedefleriniz için tasarlanmış özel terapi programı",
+      color: "from-purple-500/20 to-purple-600/20",
+      textColor: "text-purple-600 dark:text-purple-400",
+      iconBg: "bg-purple-100 dark:bg-purple-900/30",
     },
     {
       icon: <Users className="h-5 w-5" />,
@@ -172,6 +178,9 @@ export function ServicesSection() {
         language === "en"
           ? "Consistent therapy with progress tracking"
           : "İlerleme takibi ile tutarlı terapi",
+      color: "from-amber-500/20 to-amber-600/20",
+      textColor: "text-amber-600 dark:text-amber-400",
+      iconBg: "bg-amber-100 dark:bg-amber-900/30",
     },
     {
       icon: <CheckCircle2 className="h-5 w-5" />,
@@ -180,6 +189,9 @@ export function ServicesSection() {
         language === "en"
           ? "Continuous guidance and adjustments as needed"
           : "Gerektiğinde sürekli rehberlik ve ayarlamalar",
+      color: "from-emerald-500/20 to-emerald-600/20",
+      textColor: "text-emerald-600 dark:text-emerald-400",
+      iconBg: "bg-emerald-100 dark:bg-emerald-900/30",
     },
   ];
 
@@ -341,42 +353,71 @@ export function ServicesSection() {
           style={{ transitionDelay: "400ms" }}
         >
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-display mb-4">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              {language === "en" ? "My Process" : "Sürecim"}
+            </div>
+            <h3 className="text-2xl md:text-3xl font-display mb-4">
               {language === "en" ? "How It Works" : "Nasıl Çalışır"}
             </h3>
             <p className="text-foreground/70 max-w-2xl mx-auto">
               {language === "en"
-                ? "Our proven process ensures you receive the highest quality care and achieve the best possible outcomes."
+                ? "My proven process ensures you receive the highest quality care and achieve the best possible outcomes."
                 : "Kanıtlanmış sürecimiz, en yüksek kalitede bakım almanızı ve mümkün olan en iyi sonuçları elde etmenizi sağlar."}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "p-6 rounded-xl bg-background/80 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-500 hover:shadow-md",
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                )}
-                style={{ transitionDelay: `${500 + index * 100}ms` }}
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
-                    {step.icon}
+          {/* Stripe-like horizontal process steps */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="relative">
+              {/* Connection line */}
+              <div className="absolute top-12 left-0 right-0 h-0.5 bg-border hidden md:block"></div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {processSteps.map((step, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "transition-all duration-500 flex flex-col items-center",
+                      isVisible
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-8"
+                    )}
+                    style={{ transitionDelay: `${500 + index * 100}ms` }}
+                  >
+                    {/* Step number with icon */}
+                    <div className="relative z-10 mb-6">
+                      <div
+                        className={cn(
+                          "w-24 h-24 rounded-full flex items-center justify-center",
+                          step.iconBg,
+                          step.textColor
+                        )}
+                      >
+                        {step.icon}
+                      </div>
+                      <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-background flex items-center justify-center text-sm font-medium border border-border">
+                        {index + 1}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="text-center">
+                      <h4
+                        className={cn(
+                          "text-lg font-medium mb-2",
+                          step.textColor
+                        )}
+                      >
+                        {step.title}
+                      </h4>
+                      <p className="text-foreground/80 text-sm">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-foreground/70 mb-4">
-                    <span className="text-sm font-medium">{index + 1}</span>
-                  </div>
-                  <h4 className="font-medium mb-2">{step.title}</h4>
-                  <p className="text-sm text-foreground/70">
-                    {step.description}
-                  </p>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
 

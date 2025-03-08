@@ -1,13 +1,57 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n/language-context";
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, Calendar, MapPin, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Star,
+  Calendar,
+  MapPin,
+  CheckCircle,
+  Quote,
+  ChevronLeft,
+  ChevronRight,
+  MessageCircle,
+  ArrowRight,
+} from "lucide-react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 export function TestimonialsSection() {
   const { t, language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer to trigger animations when section is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const section = document.getElementById("testimonials");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
+
+  const handlePrevious = () => {
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
 
   // Real testimonials data with both English and Turkish versions
   const testimonials =
@@ -113,10 +157,51 @@ export function TestimonialsSection() {
           },
         ];
 
+  // Success metrics
+  const successMetrics = [
+    {
+      value: "500+",
+      label: language === "en" ? "Satisfied Clients" : "Memnun Danışan",
+    },
+    {
+      value: "95%",
+      label: language === "en" ? "Success Rate" : "Başarı Oranı",
+    },
+    {
+      value: "10+",
+      label: language === "en" ? "Years Experience" : "Yıllık Deneyim",
+    },
+  ];
+
+  // Categories for testimonial filtering (not implemented yet, but prepared for future)
+  const categories = [
+    language === "en" ? "All Testimonials" : "Tüm Referanslar",
+    language === "en" ? "Children" : "Çocuklar",
+    language === "en" ? "Adults" : "Yetişkinler",
+    language === "en" ? "Speech Therapy" : "Konuşma Terapisi",
+  ];
+
   return (
-    <section id="testimonials" className="py-24 bg-background relative">
+    <section id="testimonials" className="py-24 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/20 -z-10"></div>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-24 left-[10%] w-64 h-64 rounded-full bg-primary/5 blur-3xl -z-5"></div>
+      <div className="absolute bottom-24 right-[5%] w-72 h-72 rounded-full bg-secondary/5 blur-3xl -z-5"></div>
+
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        {/* Section header */}
+        <div
+          className={cn(
+            "text-center max-w-3xl mx-auto mb-16 transition-all duration-700 transform",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+        >
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            {language === "en" ? "Client Stories" : "Danışan Hikayeleri"}
+          </div>
           <h2 className="text-3xl md:text-4xl font-display text-foreground mb-4">
             {t("testimonialsTitle")}
           </h2>
@@ -125,72 +210,148 @@ export function TestimonialsSection() {
           </p>
         </div>
 
+        {/* Success metrics */}
+        <div
+          className={cn(
+            "grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-3xl mx-auto transition-all duration-700 transform",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+          style={{ transitionDelay: "100ms" }}
+        >
+          {successMetrics.map((metric, index) => (
+            <div
+              key={index}
+              className="bg-background/60 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center hover:shadow-md transition-all duration-300"
+            >
+              <div className="text-3xl font-display text-primary mb-2">
+                {metric.value}
+              </div>
+              <div className="text-sm text-foreground/70">{metric.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Category tabs (visual only for now) */}
+        <div
+          className={cn(
+            "flex flex-wrap justify-center gap-2 mb-12 transition-all duration-700 transform",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+          style={{ transitionDelay: "150ms" }}
+        >
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              className={cn(
+                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                index === 0
+                  ? "bg-primary text-white"
+                  : "bg-background/60 backdrop-blur-sm border border-border/50 text-foreground/70 hover:bg-background hover:text-foreground"
+              )}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         {/* Featured testimonial */}
-        <div className="mb-16">
-          <Card className="bg-card/60 border-border/30 hover:shadow-lg transition-all duration-300 overflow-hidden">
-            <CardContent className="p-8 md:p-10 relative">
-              {/* Quote mark decoration */}
-              <div className="absolute -top-4 -left-2 text-8xl text-primary/10 font-serif">
-                "
-              </div>
+        <div
+          className={cn(
+            "mb-16 transition-all duration-700 transform",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+          style={{ transitionDelay: "200ms" }}
+        >
+          <div className="relative">
+            {/* Navigation buttons */}
+            <div className="absolute top-1/2 -left-4 md:-left-6 -translate-y-1/2 z-10">
+              <button
+                onClick={handlePrevious}
+                className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 shadow-md flex items-center justify-center text-foreground/70 hover:text-primary transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="absolute top-1/2 -right-4 md:-right-6 -translate-y-1/2 z-10">
+              <button
+                onClick={handleNext}
+                className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 shadow-md flex items-center justify-center text-foreground/70 hover:text-primary transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
 
-              <div className="flex flex-col md:flex-row gap-8 relative z-10">
-                <div className="md:w-2/3">
-                  <div className="flex items-center gap-1 mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star
-                        key={star}
-                        className="h-5 w-5 fill-accent stroke-accent"
-                      />
-                    ))}
+            {/* Testimonial card */}
+            <Card className="bg-background/60 backdrop-blur-md border-border/30 shadow-lg transition-all duration-300 overflow-hidden">
+              <div className="p-8 md:p-10 relative">
+                {/* Quote mark decoration */}
+                <div className="absolute top-6 left-6 text-6xl text-primary/10 font-serif">
+                  <Quote className="h-12 w-12 text-primary/20" />
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+                  <div className="lg:col-span-8">
+                    <div className="flex items-center gap-1 mb-6">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          className="h-5 w-5 fill-amber-400 text-amber-400"
+                        />
+                      ))}
+                      <span className="ml-2 text-sm text-foreground/60">
+                        5.0
+                      </span>
+                    </div>
+
+                    <p className="text-foreground/80 text-lg mb-8 relative z-10 leading-relaxed">
+                      "{testimonials[activeIndex].content}"
+                    </p>
+
+                    <div className="flex items-center mt-6">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-primary font-medium">
+                        {testimonials[activeIndex].name.charAt(0)}
+                      </div>
+                      <div className="ml-3">
+                        <h4 className="font-medium">
+                          {testimonials[activeIndex].name}
+                        </h4>
+                        <p className="text-sm text-foreground/60">
+                          {testimonials[activeIndex].service}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
-                  <p className="text-foreground/80 text-lg mb-6 relative z-10 leading-relaxed">
-                    "{testimonials[activeIndex].content}"
-                  </p>
-
-                  <div className="flex items-center mt-6">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-medium">
-                      {testimonials[activeIndex].name.charAt(0)}
+                  <div className="lg:col-span-4 bg-muted/30 rounded-xl p-6 flex flex-col gap-4 h-fit">
+                    <div className="flex items-center gap-3">
+                      <Calendar className="h-5 w-5 text-primary" />
+                      <span className="text-foreground/70">
+                        {testimonials[activeIndex].date}
+                      </span>
                     </div>
-                    <div className="ml-3">
-                      <h4 className="font-medium">
-                        {testimonials[activeIndex].name}
-                      </h4>
-                      <p className="text-sm text-foreground/60">
-                        {testimonials[activeIndex].service}
-                      </p>
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-primary" />
+                      <span className="text-foreground/70">
+                        {testimonials[activeIndex].location}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <span className="text-foreground/70">
+                        {language === "en"
+                          ? "Verified Client"
+                          : "Doğrulanmış Danışan"}
+                      </span>
                     </div>
                   </div>
                 </div>
-
-                <div className="md:w-1/3 bg-muted/30 rounded-lg p-6 flex flex-col gap-4">
-                  <div className="flex items-center gap-3">
-                    <Calendar className="h-5 w-5 text-primary" />
-                    <span className="text-foreground/70">
-                      {testimonials[activeIndex].date}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    <span className="text-foreground/70">
-                      {testimonials[activeIndex].location}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-accent" />
-                    <span className="text-foreground/70">
-                      {language === "en"
-                        ? "Verified Client"
-                        : "Doğrulanmış Danışan"}
-                    </span>
-                  </div>
-                </div>
               </div>
-            </CardContent>
-          </Card>
+            </Card>
+          </div>
 
-          {/* Testimonial navigation */}
+          {/* Testimonial navigation dots */}
           <div className="flex justify-center mt-6 gap-2">
             {testimonials.map((_, index) => (
               <button
@@ -205,38 +366,47 @@ export function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Grid of other testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Grid of other testimonials - improved card design */}
+        <div
+          className={cn(
+            "grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-700 transform",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+          style={{ transitionDelay: "300ms" }}
+        >
           {testimonials
             .filter((_, i) => i !== activeIndex)
             .slice(0, 3)
             .map((testimonial, index) => (
               <Card
                 key={index}
-                className="bg-card/60 border-border/30 hover:shadow-lg transition-all duration-300 h-full"
+                className="bg-background/60 backdrop-blur-md border-border/30 hover:shadow-lg transition-all duration-300 h-full group overflow-hidden"
               >
-                <CardContent className="p-6 relative h-full flex flex-col">
+                <div className="p-6 relative h-full flex flex-col">
+                  {/* Decorative top bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-secondary/50 to-primary/50 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+
                   {/* Quote mark decoration */}
-                  <div className="absolute -top-4 -left-2 text-6xl text-primary/20 font-serif">
-                    "
+                  <div className="absolute top-4 right-4">
+                    <Quote className="h-6 w-6 text-primary/20" />
                   </div>
 
                   <div className="flex items-center gap-1 mb-4">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
-                        className="h-4 w-4 fill-accent stroke-accent"
+                        className="h-4 w-4 fill-amber-400 text-amber-400"
                       />
                     ))}
                   </div>
 
-                  <p className="text-foreground/80 mb-6 relative z-10 line-clamp-4">
+                  <p className="text-foreground/80 mb-6 relative z-10 line-clamp-4 text-sm">
                     "{testimonial.content}"
                   </p>
 
-                  <div className="mt-auto pt-4 flex items-center justify-between">
+                  <div className="mt-auto pt-4 flex items-center justify-between border-t border-border/30">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-medium">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-primary font-medium text-sm">
                         {testimonial.name.charAt(0)}
                       </div>
                       <div className="ml-3">
@@ -249,26 +419,41 @@ export function TestimonialsSection() {
                       </div>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-accent" />
+                      <CheckCircle className="h-4 w-4 text-green-500" />
                     </div>
                   </div>
-                </CardContent>
+                </div>
               </Card>
             ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-foreground/60 max-w-xl mx-auto">
-            {language === "en"
-              ? "These are real testimonials from clients who received speech therapy services from Müberra Kandemir at Rota Rehabilitation Center."
-              : "Bunlar, Müberra Kandemir'den Rota Rehabilitasyon Merkezi'nde konuşma terapisi hizmeti alan gerçek danışanların yorumlarıdır."}
-          </p>
+        {/* Call to action */}
+        <div
+          className={cn(
+            "mt-16 text-center transition-all duration-700 transform",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+          style={{ transitionDelay: "400ms" }}
+        >
+          <div className="bg-background/80 backdrop-blur-sm border border-border/50 rounded-2xl p-8 max-w-3xl mx-auto">
+            <h3 className="text-xl font-display mb-4">
+              {language === "en"
+                ? "Share Your Experience"
+                : "Deneyiminizi Paylaşın"}
+            </h3>
+            <p className="text-foreground/70 max-w-2xl mx-auto mb-6">
+              {language === "en"
+                ? "These are real testimonials from clients who received speech therapy services. Would you like to share your own experience?"
+                : "Bunlar, konuşma terapisi hizmeti alan gerçek danışanların yorumlarıdır. Kendi deneyiminizi paylaşmak ister misiniz?"}
+            </p>
+            <Button className="group">
+              <MessageCircle className="mr-2 h-5 w-5" />
+              {language === "en" ? "Submit a Testimonial" : "Referans Gönderin"}
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute -z-10 top-40 left-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
-      <div className="absolute -z-10 bottom-20 right-10 w-60 h-60 bg-accent/10 rounded-full blur-3xl"></div>
     </section>
   );
 }
