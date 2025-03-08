@@ -14,18 +14,12 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
 
-      // Show/hide header based on scroll direction
-      setVisible(
-        prevScrollPos > currentScrollPos ||
-          currentScrollPos < 10 ||
-          isMobileMenuOpen
-      );
+      // Keep track of scroll position for other calculations
       setPrevScrollPos(currentScrollPos);
 
       // Add background when scrolled
@@ -74,9 +68,8 @@ export function Header() {
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/90 backdrop-blur-md shadow-sm py-2"
-          : "bg-transparent py-4",
-        !visible && !isMobileMenuOpen && "transform -translate-y-full"
+          ? "bg-background/98 backdrop-blur-md shadow-md py-2 border-b border-primary/10"
+          : "bg-background/80 backdrop-blur-sm py-4 border-b border-transparent"
       )}
     >
       <div className="container mx-auto px-4">
