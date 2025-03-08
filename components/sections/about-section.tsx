@@ -329,49 +329,6 @@ export function AboutSection() {
                   ))}
                 </div>
               </div>
-
-              {/* Core values */}
-              <div>
-                <h3 className="text-xl font-display mb-4 text-foreground/80">
-                  {t("aboutCoreValues")}
-                </h3>
-                <div className="space-y-4">
-                  {coreValues.map((value, index) => (
-                    <div
-                      key={index}
-                      className={cn(
-                        "p-4 rounded-xl bg-gradient-to-br border border-white/10 transition-all duration-300 hover:shadow-md",
-                        value.color
-                      )}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div
-                          className={cn(
-                            "p-2 rounded-xl shrink-0",
-                            value.iconBg,
-                            value.textColor
-                          )}
-                        >
-                          {value.icon}
-                        </div>
-                        <div>
-                          <h4
-                            className={cn(
-                              "text-base font-medium mb-1",
-                              value.textColor
-                            )}
-                          >
-                            {value.title}
-                          </h4>
-                          <p className="text-sm text-foreground/80">
-                            {value.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 
@@ -416,16 +373,58 @@ export function AboutSection() {
             >
               {/* My Story Tab */}
               {activeTab === 0 && (
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-display mb-4 text-primary">
-                    {t("aboutJourney")}
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed mb-4">
-                    {t("aboutJourneyPart1")}
-                  </p>
-                  <p className="text-foreground/80 leading-relaxed">
-                    {t("aboutJourneyPart2")}
-                  </p>
+                <div className="space-y-8">
+                  {/* My Journey section */}
+                  <div>
+                    <h3 className="text-2xl font-display mb-4 text-primary">
+                      {t("aboutJourney")}
+                    </h3>
+                    <p className="text-foreground/80 leading-relaxed mb-4">
+                      {t("aboutJourneyPart1")}
+                    </p>
+                    <p className="text-foreground/80 leading-relaxed">
+                      {t("aboutJourneyPart2")}
+                    </p>
+                  </div>
+
+                  {/* Core Values section - MOVED HERE */}
+                  <div>
+                    <h3 className="text-2xl font-display mb-4 text-primary">
+                      {t("aboutCoreValues")}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {coreValues.map((value, index) => (
+                        <div
+                          key={index}
+                          className={cn(
+                            "p-4 rounded-xl bg-gradient-to-br border border-white/10 transition-all duration-300 hover:shadow-md",
+                            value.color
+                          )}
+                        >
+                          <div
+                            className={cn(
+                              "p-2.5 rounded-full w-fit mb-3",
+                              value.iconBg,
+                              value.textColor
+                            )}
+                          >
+                            {value.icon}
+                          </div>
+                          <h4
+                            className={cn(
+                              "text-lg font-medium mb-2",
+                              value.textColor
+                            )}
+                          >
+                            {value.title}
+                          </h4>
+                          <p className="text-foreground/80">
+                            {value.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
 
