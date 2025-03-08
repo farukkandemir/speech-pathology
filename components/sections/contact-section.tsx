@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Building } from "lucide-react";
+import { MapPin, Phone, Mail, Building, CheckCircle, Send } from "lucide-react";
 import { FormEvent, useState } from "react";
+import { motion } from "framer-motion";
 
 export function ContactSection() {
   const { t, language } = useLanguage();
@@ -60,91 +61,143 @@ export function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-muted/20 relative">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/30 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none">
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-secondary/10 blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-display text-foreground mb-4">
             {t("contactTitle")}
           </h2>
           <p className="text-lg text-foreground/80">{t("contactSubtitle")}</p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div>
-            <Card className="bg-card shadow-md overflow-hidden border-border/50">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-display mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="md:col-span-5"
+          >
+            <Card className="bg-card/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden border-border/50 transition-all duration-300 hover:shadow-xl">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-display mb-8 pb-4 border-b border-border/50">
                   {t("contactInfo")}
                 </h3>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {contactInfo.map((item, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="shrink-0 mt-1">{item.icon}</div>
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.1 * index }}
+                      className="flex gap-5 group"
+                    >
+                      <div className="shrink-0 mt-1 p-3 bg-primary/10 rounded-full transition-all duration-300 group-hover:bg-primary/20">
+                        {item.icon}
+                      </div>
                       <div>
-                        <h4 className="font-medium mb-1">{item.title}</h4>
+                        <h4 className="font-medium text-lg mb-1">
+                          {item.title}
+                        </h4>
                         <p className="text-foreground/70">{item.details}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
-                <div className="mt-8">
-                  <div className="aspect-video bg-muted rounded-lg overflow-hidden">
-                    {/* Here you can add a Google Map or location image */}
-                    <div className="h-full w-full flex items-center justify-center bg-primary/5">
-                      <p className="text-primary">
-                        Rota Rehabilitation Center, Ankara
-                      </p>
+                <div className="mt-10">
+                  <h4 className="font-medium text-lg mb-4">{t("findUs")}</h4>
+                  <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-md border border-border/50">
+                    {/* Map placeholder - would be replaced with actual Google Maps integration */}
+                    <div className="h-full w-full relative bg-primary/5 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="bg-background/90 backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg">
+                          <p className="text-primary font-medium flex items-center">
+                            <MapPin className="h-4 w-4 mr-2" />
+                            Rota Rehabilitation Center, Ankara
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
-          <div>
-            <Card className="bg-background shadow-md overflow-hidden border-border/50">
-              <CardContent className="p-6">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="md:col-span-7"
+          >
+            <Card className="bg-background/80 backdrop-blur-sm shadow-lg rounded-xl overflow-hidden border-border/50 transition-all duration-300 hover:shadow-xl">
+              <CardContent className="p-8">
                 {isSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg
-                        className="w-8 h-8 text-primary"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-12"
+                  >
+                    <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle className="w-10 h-10 text-primary" />
                     </div>
-                    <h3 className="text-xl font-display mb-2">
-                      Thank you for your message!
+                    <h3 className="text-2xl font-display mb-3">
+                      {language === "en"
+                        ? "Thank you for your message!"
+                        : "Mesajınız için teşekkürler!"}
                     </h3>
-                    <p className="text-foreground/70">
-                      Müberra will get back to you as soon as possible.
+                    <p className="text-foreground/70 max-w-md mx-auto">
+                      {language === "en"
+                        ? "Müberra will get back to you as soon as possible."
+                        : "Müberra en kısa sürede size geri dönecektir."}
                     </p>
                     <Button
-                      className="mt-6"
+                      className="mt-8"
                       variant="outline"
                       onClick={() => setIsSubmitted(false)}
                     >
-                      Send another message
+                      {language === "en"
+                        ? "Send another message"
+                        : "Başka bir mesaj gönder"}
                     </Button>
-                  </div>
+                  </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
+                    <div className="mb-2">
+                      <h3 className="text-xl font-display mb-4">
+                        {language === "en" ? "Send a Message" : "Mesaj Gönder"}
+                      </h3>
+                      <p className="text-foreground/70 mb-6">
+                        {language === "en"
+                          ? "Fill out the form below and Müberra will get back to you soon."
+                          : "Aşağıdaki formu doldurun, Müberra en kısa sürede size geri dönecektir."}
+                      </p>
+                    </div>
+
+                    <div className="group">
                       <label
                         htmlFor="name"
-                        className="block text-sm font-medium mb-2"
+                        className="block text-sm font-medium mb-2 transition-colors group-focus-within:text-primary"
                       >
-                        {t("nameLabel")}
+                        {t("nameLabel")} <span className="text-red-500">*</span>
                       </label>
                       <Input
                         id="name"
@@ -152,18 +205,22 @@ export function ContactSection() {
                         onChange={(e) =>
                           setFormState({ ...formState, name: e.target.value })
                         }
-                        placeholder="John Doe"
+                        placeholder={
+                          language === "en" ? "John Doe" : "Ahmet Yılmaz"
+                        }
                         required
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="group">
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium mb-2"
+                          className="block text-sm font-medium mb-2 transition-colors group-focus-within:text-primary"
                         >
-                          {t("emailLabel")}
+                          {t("emailLabel")}{" "}
+                          <span className="text-red-500">*</span>
                         </label>
                         <Input
                           id="email"
@@ -177,12 +234,13 @@ export function ContactSection() {
                           }
                           placeholder="you@example.com"
                           required
+                          className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                         />
                       </div>
-                      <div>
+                      <div className="group">
                         <label
                           htmlFor="phone"
-                          className="block text-sm font-medium mb-2"
+                          className="block text-sm font-medium mb-2 transition-colors group-focus-within:text-primary"
                         >
                           {t("phoneLabel")}
                         </label>
@@ -197,16 +255,18 @@ export function ContactSection() {
                             })
                           }
                           placeholder="+90 (5XX) XXX XXXX"
+                          className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                         />
                       </div>
                     </div>
 
-                    <div>
+                    <div className="group">
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium mb-2"
+                        className="block text-sm font-medium mb-2 transition-colors group-focus-within:text-primary"
                       >
-                        {t("messageLabel")}
+                        {t("messageLabel")}{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <Textarea
                         id="message"
@@ -217,22 +277,26 @@ export function ContactSection() {
                             message: e.target.value,
                           })
                         }
-                        placeholder="How can Müberra help you?"
+                        placeholder={
+                          language === "en"
+                            ? "How can Müberra help you?"
+                            : "Müberra size nasıl yardımcı olabilir?"
+                        }
                         rows={5}
                         required
-                        className="resize-none"
+                        className="resize-none transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
 
                     <Button
                       type="submit"
-                      className="w-full"
+                      className="w-full mt-4 py-6 text-base group"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
                         <>
                           <svg
-                            className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                            className="animate-spin -ml-1 mr-2 h-5 w-5"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -251,17 +315,20 @@ export function ContactSection() {
                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             ></path>
                           </svg>
-                          Processing...
+                          {language === "en" ? "Processing..." : "İşleniyor..."}
                         </>
                       ) : (
-                        t("submitButton")
+                        <>
+                          <Send className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                          {t("submitButton")}
+                        </>
                       )}
                     </Button>
                   </form>
                 )}
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

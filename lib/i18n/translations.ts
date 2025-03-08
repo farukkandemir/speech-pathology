@@ -61,6 +61,7 @@ export const translations = {
     addressLabel: "Address",
     phoneContact: "Phone",
     emailContact: "Email",
+    findUs: "Find Us",
   },
 
   tr: {
@@ -122,5 +123,6 @@ export const translations = {
     addressLabel: "Adres",
     phoneContact: "Telefon",
     emailContact: "E-posta",
+    findUs: "Bizi Bulun",
   },
 };
