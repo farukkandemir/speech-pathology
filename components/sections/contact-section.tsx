@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Building } from "lucide-react";
 import { FormEvent, useState } from "react";
 
 export function ContactSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -38,9 +38,14 @@ export function ContactSection() {
 
   const contactInfo = [
     {
+      icon: <Building className="h-6 w-6 text-primary" />,
+      title: language === "en" ? "Clinic" : "Klinik",
+      details: "Rota Rehabilitation Center",
+    },
+    {
       icon: <MapPin className="h-6 w-6 text-primary" />,
       title: t("addressLabel"),
-      details: "Atatürk Bulvarı No: 123, Çankaya, Ankara, Turkey",
+      details: language === "en" ? "Ankara, Turkey" : "Ankara, Türkiye",
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
@@ -89,7 +94,7 @@ export function ContactSection() {
                     {/* Here you can add a Google Map or location image */}
                     <div className="h-full w-full flex items-center justify-center bg-primary/5">
                       <p className="text-primary">
-                        Müberra Kandemir's Office Location
+                        Rota Rehabilitation Center, Ankara
                       </p>
                     </div>
                   </div>

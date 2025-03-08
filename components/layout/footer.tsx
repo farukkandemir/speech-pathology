@@ -19,8 +19,9 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs">
-              Professional speech therapy services in Turkey, offering bilingual
-              support for all ages.
+              {language === "en"
+                ? "Professional speech therapy services at Rota Rehabilitation Center in Turkey, offering bilingual support for all ages."
+                : "Rota Rehabilitasyon Merkezi'nde her yaş için iki dilli destek sunan profesyonel konuşma terapisi hizmetleri."}
             </p>
             <LanguageSwitcher />
           </div>
@@ -112,23 +113,22 @@ export function Footer() {
           <div>
             <h3 className="font-display text-lg mb-4">{t("contactInfo")}</h3>
             <address className="not-italic text-foreground/70 space-y-3">
-              <p>Atatürk Bulvarı No: 123</p>
-              <p>Çankaya, Ankara</p>
-              <p>Turkey</p>
+              <p>Rota Rehabilitation Center</p>
+              <p>Ankara, Turkey</p>
               <p className="pt-2">
                 <a
-                  href="tel:+903121234567"
+                  href="tel:+905551234567"
                   className="hover:text-primary transition-colors"
                 >
-                  +90 (312) 123 4567
+                  +90 (555) 123 4567
                 </a>
               </p>
               <p>
                 <a
-                  href="mailto:info@muberrakandemir.com"
+                  href="mailto:muberra@kandemir.com.tr"
                   className="hover:text-primary transition-colors"
                 >
-                  info@muberrakandemir.com
+                  muberra@kandemir.com.tr
                 </a>
               </p>
             </address>
