@@ -214,10 +214,12 @@ export function ServicesSection() {
           )}
         >
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            {language === "en" ? "My Services" : "Hizmetlerim"}
+            {t("servicesTitle")}
           </div>
           <h2 className="text-3xl md:text-4xl font-display text-foreground mb-4">
-            {t("servicesTitle")}
+            {language === "en"
+              ? "Comprehensive Speech Therapy"
+              : "Kapsamlı Konuşma Terapisi"}
           </h2>
           <p className="text-lg text-foreground/80">{t("servicesSubtitle")}</p>
         </div>
