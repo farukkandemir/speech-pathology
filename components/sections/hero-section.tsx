@@ -7,12 +7,9 @@ import {
   ArrowRight,
   MessageCircle,
   Calendar,
-  Brain,
-  HeartHandshake,
   Star,
   Zap,
   Lightbulb,
-  Languages,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
