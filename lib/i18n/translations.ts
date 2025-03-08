@@ -10,8 +10,11 @@ export const translations = {
     contact: "Contact",
 
     // Hero Section
-    heroTitle: "Müberra Kandemir",
-    heroSubtitle: "Professional Speech Therapy for All Ages",
+    heroTitle: "Find Your Voice, Express Your World",
+    heroSubtitle: "Transformative Speech Therapy That Empowers Communication",
+    heroTagline: "Professional Speech Pathologist",
+    heroDescription:
+      "Helping children and adults overcome communication barriers with personalized, evidence-based therapy in a supportive environment.",
     heroButton: "Book Consultation",
 
     // About Section
@@ -73,8 +76,11 @@ export const translations = {
     contact: "İletişim",
 
     // Hero Section
-    heroTitle: "Müberra Kandemir",
-    heroSubtitle: "Her Yaş İçin Profesyonel Konuşma Terapisi",
+    heroTitle: "Sesinizi Bulun, Dünyanızı İfade Edin",
+    heroSubtitle: "İletişimi Güçlendiren Dönüştürücü Konuşma Terapisi",
+    heroTagline: "Profesyonel Konuşma Patoloğu",
+    heroDescription:
+      "Destekleyici bir ortamda kişiselleştirilmiş, kanıta dayalı terapi ile çocukların ve yetişkinlerin iletişim engellerini aşmalarına yardımcı oluyorum.",
     heroButton: "Randevu Al",
 
     // About Section
