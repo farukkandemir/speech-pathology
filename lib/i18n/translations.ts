@@ -128,30 +128,60 @@ export const translations = {
     aboutContinuousAssessment: "Continuous assessment and adaptation",
 
     // About Section - CTA
-    aboutReadyToBegin: "Ready to Begin?",
+    aboutReadyToBegin: "Are you ready to begin?",
     aboutReadyCta: "Let's work together to achieve your communication goals",
     aboutScheduleConsultation: "Schedule Consultation",
 
+    // Quiz Component
+    quizTitle: "Find the Right Therapy for You",
+    quizDescription:
+      "Answer a few quick questions to get personalized recommendations.",
+    quizStartButton: "Start Quiz",
+    quizBackButton: "Back",
+    quizResetButton: "Start Over",
+    quizFirstConsultation: "Your first consultation is complimentary",
+
+    // Quiz Steps
+    quizAgeSelectionTitle: "Who needs speech therapy?",
+    quizAgeSelectionDescription:
+      "Select the age group that best describes your needs",
+    quizChallengeSelectionTitle: "What challenges are you facing?",
+    quizChallengeSelectionDescription:
+      "Select the area where you'd like support",
+
+    // Quiz Age Groups
+    quizChild: "Child (0-12)",
+    quizTeen: "Teen (13-18)",
+    quizAdult: "Adult (18+)",
+    quizMultiple: "Multiple Ages",
+
+    // Quiz Challenges
+    quizArticulation: "Articulation & Pronunciation",
+    quizFluency: "Fluency & Stuttering",
+    quizLanguage: "Language Development",
+    quizMultilingual: "Multilingual Support",
+    quizEvaluation: "General Evaluation",
+
+    // Quiz Recommendations
+    quizRecommendationCTA: "Book a Free Consultation",
+    quizPersonalizedPlan: "Personalized Therapy Plan",
+    quizPersonalizedDescription:
+      "Based on your needs, a customized therapy plan would be most effective. Let's schedule a consultation to discuss your specific goals.",
+    quizChildArticulation: "Child Articulation Therapy",
+    quizChildArticulationDescription:
+      "Our child-focused articulation program helps develop clear speech patterns through playful exercises. Let's discuss how we can help your child.",
+    quizChildLanguage: "Child Language Development",
+    quizChildLanguageDescription:
+      "Our structured language program enhances vocabulary and communication skills for children. Book a consultation to learn about our approach.",
+    quizTeenFluency: "Teen Fluency Therapy",
+    quizTeenFluencyDescription:
+      "Our specialized fluency program helps teens overcome stuttering and develop confidence. Schedule a consultation to discuss your teen's needs.",
+    quizBilingual: "Bilingual Speech Therapy",
+    quizBilingualDescription:
+      "Our bilingual approach supports adults developing communication skills in multiple languages. Let's discuss your specific language goals.",
+
     // Services Section
-    servicesTitle: "My Services",
-    servicesSubtitle: "Comprehensive Speech Therapy Solutions",
-    service1Title: "Articulation Therapy",
-    service1Description:
-      "Help with pronouncing sounds correctly for clearer speech.",
-    service2Title: "Language Development",
-    service2Description:
-      "Build vocabulary, grammar, and social communication skills.",
-    service3Title: "Fluency Therapy",
-    service3Description: "Support for stuttering and other fluency disorders.",
-    service4Title: "Voice Therapy",
-    service4Description:
-      "Techniques to improve voice quality and vocal health.",
-    service5Title: "Swallowing Therapy",
-    service5Description:
-      "Treatment for difficulties with eating and swallowing.",
-    service6Title: "Early Intervention",
-    service6Description:
-      "Support for young children with developmental delays.",
+    servicesTitle: "Speech Therapy Services",
 
     // Testimonials Section
     testimonialsTitle: "What My Clients Say",
@@ -327,25 +357,55 @@ export const translations = {
     aboutReadyCta: "İletişim hedeflerinize ulaşmak için birlikte çalışalım",
     aboutScheduleConsultation: "Danışma Randevusu Alın",
 
+    // Quiz Component
+    quizTitle: "Size Uygun Terapiyi Bulun",
+    quizDescription:
+      "Kişiselleştirilmiş öneriler almak için birkaç hızlı soruyu yanıtlayın.",
+    quizStartButton: "Quize Başla",
+    quizBackButton: "Geri",
+    quizResetButton: "Yeniden Başla",
+    quizFirstConsultation: "İlk danışmanız ücretsizdir",
+
+    // Quiz Steps
+    quizAgeSelectionTitle: "Kimin konuşma terapisine ihtiyacı var?",
+    quizAgeSelectionDescription:
+      "İhtiyaçlarınızı en iyi tanımlayan yaş grubunu seçin",
+    quizChallengeSelectionTitle: "Hangi zorluklarla karşılaşıyorsunuz?",
+    quizChallengeSelectionDescription: "Destek almak istediğiniz alanı seçin",
+
+    // Quiz Age Groups
+    quizChild: "Çocuk (0-12)",
+    quizTeen: "Genç (13-18)",
+    quizAdult: "Yetişkin (18+)",
+    quizMultiple: "Farklı Yaşlar",
+
+    // Quiz Challenges
+    quizArticulation: "Artikülasyon ve Telaffuz",
+    quizFluency: "Akıcılık ve Kekemelik",
+    quizLanguage: "Dil Gelişimi",
+    quizMultilingual: "Çok Dilli Destek",
+    quizEvaluation: "Genel Değerlendirme",
+
+    // Quiz Recommendations
+    quizRecommendationCTA: "Ücretsiz Danışma Randevusu Alın",
+    quizPersonalizedPlan: "Kişiselleştirilmiş Terapi Planı",
+    quizPersonalizedDescription:
+      "İhtiyaçlarınıza göre, özelleştirilmiş bir terapi planı en etkili olacaktır. Belirli hedeflerinizi görüşmek için bir danışma randevusu planlayalım.",
+    quizChildArticulation: "Çocuk Artikülasyon Terapisi",
+    quizChildArticulationDescription:
+      "Çocuk odaklı artikülasyon programımız, eğlenceli alıştırmalar yoluyla net konuşma kalıpları geliştirmeye yardımcı olur. Çocuğunuza nasıl yardımcı olabileceğimizi konuşalım.",
+    quizChildLanguage: "Çocuk Dil Gelişimi",
+    quizChildLanguageDescription:
+      "Yapılandırılmış dil programımız, çocuklar için kelime dağarcığını ve iletişim becerilerini geliştirir. Yaklaşımımız hakkında bilgi edinmek için bir danışma randevusu alın.",
+    quizTeenFluency: "Genç Akıcılık Terapisi",
+    quizTeenFluencyDescription:
+      "Özel akıcılık programımız, gençlerin kekemeliği aşmasına ve özgüven geliştirmesine yardımcı olur. Gencin ihtiyaçlarını görüşmek için bir danışma randevusu planlayın.",
+    quizBilingual: "İki Dilli Konuşma Terapisi",
+    quizBilingualDescription:
+      "İki dilli yaklaşımımız, yetişkinlerin birden fazla dilde iletişim becerilerini geliştirmelerini destekler. Belirli dil hedeflerinizi görüşelim.",
+
     // Services Section
     servicesTitle: "Hizmetlerim",
-    servicesSubtitle: "Kapsamlı Konuşma Terapisi Çözümleri",
-    service1Title: "Artikülasyon Terapisi",
-    service1Description:
-      "Daha net konuşma için sesleri doğru telaffuz etmeye yardımcı olur.",
-    service2Title: "Dil Gelişimi",
-    service2Description:
-      "Kelime dağarcığı, gramer ve sosyal iletişim becerilerini geliştirme.",
-    service3Title: "Akıcılık Terapisi",
-    service3Description:
-      "Kekemelik ve diğer akıcılık bozuklukları için destek.",
-    service4Title: "Ses Terapisi",
-    service4Description:
-      "Ses kalitesini ve ses sağlığını iyileştirmek için teknikler.",
-    service5Title: "Yutma Terapisi",
-    service5Description: "Yeme ve yutma zorlukları için tedavi.",
-    service6Title: "Erken Müdahale",
-    service6Description: "Gelişim geriliği olan küçük çocuklar için destek.",
 
     // Testimonials Section
     testimonialsTitle: "Danışanlarım Ne Diyor",

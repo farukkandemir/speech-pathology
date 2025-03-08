@@ -44,7 +44,7 @@ type Recommendation = {
 };
 
 export function InteractiveQuiz() {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [ageGroup, setAgeGroup] = useState<AgeGroup | null>(null);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
@@ -54,22 +54,22 @@ export function InteractiveQuiz() {
   const ageGroups = [
     {
       id: "child",
-      label: language === "en" ? "Child (0-12)" : "Çocuk (0-12)",
+      label: t("quizChild"),
       icon: <Baby className="h-5 w-5" />,
     },
     {
       id: "teen",
-      label: language === "en" ? "Teen (13-18)" : "Genç (13-18)",
+      label: t("quizTeen"),
       icon: <School className="h-5 w-5" />,
     },
     {
       id: "adult",
-      label: language === "en" ? "Adult (18+)" : "Yetişkin (18+)",
+      label: t("quizAdult"),
       icon: <User className="h-5 w-5" />,
     },
     {
       id: "multiple",
-      label: language === "en" ? "Multiple Ages" : "Farklı Yaşlar",
+      label: t("quizMultiple"),
       icon: <Users className="h-5 w-5" />,
     },
   ];
@@ -78,31 +78,27 @@ export function InteractiveQuiz() {
   const challenges = [
     {
       id: "articulation",
-      label:
-        language === "en"
-          ? "Articulation & Pronunciation"
-          : "Artikülasyon ve Telaffuz",
+      label: t("quizArticulation"),
       icon: <Speech className="h-5 w-5" />,
     },
     {
       id: "fluency",
-      label:
-        language === "en" ? "Fluency & Stuttering" : "Akıcılık ve Kekemelik",
+      label: t("quizFluency"),
       icon: <VolumeX className="h-5 w-5" />,
     },
     {
       id: "language",
-      label: language === "en" ? "Language Development" : "Dil Gelişimi",
+      label: t("quizLanguage"),
       icon: <Brain className="h-5 w-5" />,
     },
     {
       id: "multilingual",
-      label: language === "en" ? "Multilingual Support" : "Çok Dilli Destek",
+      label: t("quizMultilingual"),
       icon: <Languages className="h-5 w-5" />,
     },
     {
       id: "evaluation",
-      label: language === "en" ? "General Evaluation" : "Genel Değerlendirme",
+      label: t("quizEvaluation"),
       icon: <FileText className="h-5 w-5" />,
     },
   ];
@@ -111,38 +107,20 @@ export function InteractiveQuiz() {
   const getRecommendation = (): Recommendation => {
     // Default recommendation - now we'll just customize the title and description
     // but keep the CTA consistent for all paths
-    let title =
-      language === "en"
-        ? "Personalized Therapy Plan"
-        : "Kişiselleştirilmiş Terapi Planı";
-    let description =
-      language === "en"
-        ? "Based on your needs, a customized therapy plan would be most effective. Let's schedule a consultation to discuss your specific goals."
-        : "İhtiyaçlarınıza göre, özelleştirilmiş bir terapi planı en etkili olacaktır. Belirli hedeflerinizi görüşmek için bir danışma randevusu planlayalım.";
+    let title = t("quizPersonalizedPlan");
+    let description = t("quizPersonalizedDescription");
     let icon = <Sparkles className="h-6 w-6 text-primary" />;
 
     // Child age group recommendations
     if (ageGroup === "child") {
       if (challenge === "articulation") {
-        title =
-          language === "en"
-            ? "Child Articulation Therapy"
-            : "Çocuk Artikülasyon Terapisi";
-        description =
-          language === "en"
-            ? "Our child-focused articulation program helps develop clear speech patterns through playful exercises. Let's discuss how we can help your child."
-            : "Çocuk odaklı artikülasyon programımız, eğlenceli alıştırmalar yoluyla net konuşma kalıpları geliştirmeye yardımcı olur. Çocuğunuza nasıl yardımcı olabileceğimizi konuşalım.";
+        title = t("quizChildArticulation");
+        description = t("quizChildArticulationDescription");
         icon = <Speech className="h-6 w-6 text-primary" />;
       }
       if (challenge === "language") {
-        title =
-          language === "en"
-            ? "Child Language Development"
-            : "Çocuk Dil Gelişimi";
-        description =
-          language === "en"
-            ? "Our structured language program enhances vocabulary and communication skills for children. Book a consultation to learn about our approach."
-            : "Yapılandırılmış dil programımız, çocuklar için kelime dağarcığını ve iletişim becerilerini geliştirir. Yaklaşımımız hakkında bilgi edinmek için bir danışma randevusu alın.";
+        title = t("quizChildLanguage");
+        description = t("quizChildLanguageDescription");
         icon = <Brain className="h-6 w-6 text-primary" />;
       }
     }
@@ -150,12 +128,8 @@ export function InteractiveQuiz() {
     // Teen recommendations
     if (ageGroup === "teen") {
       if (challenge === "fluency") {
-        title =
-          language === "en" ? "Teen Fluency Therapy" : "Genç Akıcılık Terapisi";
-        description =
-          language === "en"
-            ? "Our specialized fluency program helps teens overcome stuttering and develop confidence. Schedule a consultation to discuss your teen's needs."
-            : "Özel akıcılık programımız, gençlerin kekemeliği aşmasına ve özgüven geliştirmesine yardımcı olur. Gencin ihtiyaçlarını görüşmek için bir danışma randevusu planlayın.";
+        title = t("quizTeenFluency");
+        description = t("quizTeenFluencyDescription");
         icon = <VolumeX className="h-6 w-6 text-primary" />;
       }
     }
@@ -163,14 +137,8 @@ export function InteractiveQuiz() {
     // Adult recommendations
     if (ageGroup === "adult") {
       if (challenge === "multilingual") {
-        title =
-          language === "en"
-            ? "Bilingual Speech Therapy"
-            : "İki Dilli Konuşma Terapisi";
-        description =
-          language === "en"
-            ? "Our bilingual approach supports adults developing communication skills in multiple languages. Let's discuss your specific language goals."
-            : "İki dilli yaklaşımımız, yetişkinlerin birden fazla dilde iletişim becerilerini geliştirmelerini destekler. Belirli dil hedeflerinizi görüşelim.";
+        title = t("quizBilingual");
+        description = t("quizBilingualDescription");
         icon = <Languages className="h-6 w-6 text-primary" />;
       }
     }
@@ -179,10 +147,7 @@ export function InteractiveQuiz() {
       title,
       description,
       icon,
-      cta:
-        language === "en"
-          ? "Book a Free Consultation"
-          : "Ücretsiz Danışma Randevusu Alın",
+      cta: t("quizRecommendationCTA"),
       ctaLink: "#contact",
     };
   };
@@ -242,21 +207,15 @@ export function InteractiveQuiz() {
             className="text-center"
           >
             <h3 className="text-2xl font-display mb-4 text-primary">
-              {language === "en"
-                ? "Find the Right Therapy for You"
-                : "Size Uygun Terapiyi Bulun"}
+              {t("quizTitle")}
             </h3>
-            <p className="text-foreground/70 mb-6">
-              {language === "en"
-                ? "Answer a few quick questions to get personalized recommendations."
-                : "Kişiselleştirilmiş öneriler almak için birkaç hızlı soruyu yanıtlayın."}
-            </p>
+            <p className="text-foreground/70 mb-6">{t("quizDescription")}</p>
             <Button
               onClick={handleStart}
               className="bg-primary hover:bg-primary/90 transition-all duration-300"
               size="lg"
             >
-              {language === "en" ? "Start Quiz" : "Quize Başla"}
+              {t("quizStartButton")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
@@ -275,14 +234,10 @@ export function InteractiveQuiz() {
             )}
           >
             <h3 className="text-xl font-display mb-2 text-primary text-center">
-              {language === "en"
-                ? "Who needs speech therapy?"
-                : "Kimin konuşma terapisine ihtiyacı var?"}
+              {t("quizAgeSelectionTitle")}
             </h3>
             <p className="text-foreground/70 mb-6 text-center text-sm">
-              {language === "en"
-                ? "Select the age group that best describes your needs"
-                : "İhtiyaçlarınızı en iyi tanımlayan yaş grubunu seçin"}
+              {t("quizAgeSelectionDescription")}
             </p>
 
             <div className="grid grid-cols-2 gap-3">
@@ -320,7 +275,7 @@ export function InteractiveQuiz() {
                 className="text-sm text-primary hover:underline flex items-center"
               >
                 <ArrowLeft className="mr-1 h-3 w-3" />
-                {language === "en" ? "Back" : "Geri"}
+                {t("quizBackButton")}
               </button>
               <div className="flex gap-1">
                 <div className="w-2 h-2 rounded-full bg-primary"></div>
@@ -330,14 +285,10 @@ export function InteractiveQuiz() {
             </div>
 
             <h3 className="text-xl font-display mb-2 text-primary text-center">
-              {language === "en"
-                ? "What challenges are you facing?"
-                : "Hangi zorluklarla karşılaşıyorsunuz?"}
+              {t("quizChallengeSelectionTitle")}
             </h3>
             <p className="text-foreground/70 mb-6 text-center text-sm">
-              {language === "en"
-                ? "Select the area where you'd like support"
-                : "Destek almak istediğiniz alanı seçin"}
+              {t("quizChallengeSelectionDescription")}
             </p>
 
             <div className="grid grid-cols-1 gap-3">
@@ -377,7 +328,7 @@ export function InteractiveQuiz() {
                 className="text-sm text-primary hover:underline flex items-center"
               >
                 <ArrowLeft className="mr-1 h-3 w-3" />
-                {language === "en" ? "Back" : "Geri"}
+                {t("quizBackButton")}
               </button>
               <div className="flex gap-1">
                 <div className="w-2 h-2 rounded-full bg-primary"></div>
@@ -416,16 +367,14 @@ export function InteractiveQuiz() {
                   onClick={handleReset}
                   className="text-sm text-center text-foreground/60 hover:text-foreground transition-colors py-2"
                 >
-                  {language === "en" ? "Start Over" : "Yeniden Başla"}
+                  {t("quizResetButton")}
                 </button>
               </div>
             </div>
 
             <div className="mt-4 flex items-center justify-center text-xs text-foreground/50">
               <CheckCircle2 className="h-3 w-3 mr-1" />
-              {language === "en"
-                ? "Your first consultation is complimentary"
-                : "İlk danışmanız ücretsizdir"}
+              {t("quizFirstConsultation")}
             </div>
           </motion.div>
         )}
